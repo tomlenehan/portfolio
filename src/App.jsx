@@ -24,7 +24,7 @@ const projects = [
     title: "Brand Bounty",
     projectType: "Personal Project",
     kicker: "Creator marketplace",
-    logo: "/assets/projects/brandbounty-logo.png",
+    logo: "/assets/projects/brand-bounty-mark.png",
     icon: Rocket,
     accent: "#14b8a6",
     accentSoft: "rgba(20, 184, 166, 0.18)",
@@ -38,25 +38,6 @@ const projects = [
       type: "external",
       href: "https://brandbounty.biz/",
       label: "Visit site",
-    },
-  },
-  {
-    title: "LawCrawl",
-    projectType: "Personal Project",
-    kicker: "AI contract review",
-    logo: "/assets/projects/lawcrawl-logo.png",
-    icon: FileSearch,
-    accent: "#f59e0b",
-    accentSoft: "rgba(245, 158, 11, 0.18)",
-    summary:
-      "A legal document workspace for uploading contracts, surfacing unusual terms, and asking plain-English follow-up questions.",
-    impact:
-      "Founded and shipped an AI review product using embeddings, agents, evaluators, fine-tuning experiments, and document chat workflows.",
-    stack: ["Python", "Django", "React", "LangChain", "OpenAI", "Pinecone", "PDF review"],
-    signals: ["Clause-focused review", "Vector search", "Agentic chat"],
-    action: {
-      type: "video",
-      label: "Watch demo",
     },
   },
   {
@@ -77,6 +58,25 @@ const projects = [
       type: "external",
       href: "https://questionpolitics.org/",
       label: "Visit site",
+    },
+  },
+  {
+    title: "LawCrawl",
+    projectType: "Personal Project",
+    kicker: "AI contract review",
+    logo: "/assets/projects/lawcrawl-mark.png",
+    icon: FileSearch,
+    accent: "#f59e0b",
+    accentSoft: "rgba(245, 158, 11, 0.18)",
+    summary:
+      "A legal document workspace for uploading contracts, surfacing unusual terms, and asking plain-English follow-up questions.",
+    impact:
+      "Founded and shipped an AI review product using embeddings, agents, evaluators, fine-tuning experiments, and document chat workflows.",
+    stack: ["Python", "Django", "React", "LangChain", "OpenAI", "Pinecone", "PDF review"],
+    signals: ["Clause-focused review", "Vector search", "Agentic chat"],
+    action: {
+      type: "video",
+      label: "Watch demo",
     },
   },
 ];
