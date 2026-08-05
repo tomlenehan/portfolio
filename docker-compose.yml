@@ -1,0 +1,6 @@
+services:
+  portfolio:
+    build: .
+    ports:
+      - "${PORT:-8088}:80"
+    restart: unless-stopped
