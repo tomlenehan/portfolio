@@ -1,8 +1,5 @@
 # Render auto-detects render.yaml by default. This mirror is included because
 # some teams use the .yml extension when selecting a custom Blueprint path.
-previews:
-  generation: automatic
-
 services:
   - type: web
     runtime: static

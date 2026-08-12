@@ -44,6 +44,10 @@ The static site settings are:
 - Publish Directory: `dist`
 - Node version: `22.22.3` from `.node-version`
 
+`dist` is generated output and is intentionally excluded from Git. Render must
+run the build command above for every deployment so the generated `index.html`,
+JavaScript, and CSS asset names always match.
+
 `render.yml` is included as a matching convenience copy if you choose a custom
 Blueprint path in Render.
 
