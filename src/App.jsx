@@ -106,7 +106,7 @@ const skillGroups = [
 
 const navItems = [
   ["Projects", "#projects"],
-  ["Technical Range", "#skills"],
+  ["Skills", "#skills"],
 ];
 
 const fadeUp = {
@@ -326,12 +326,12 @@ function App() {
             >
               <span className="status-pill">
                 <span className="pulse-dot" />
-                Full-stack AI product engineer in Philadelphia
+                Full-stack AI Engineer
               </span>
               <h1>Tom Lenehan</h1>
               <p>
-                A portfolio of personal AI products: creator marketplaces, legal-tech tools,
-                civic-tech platforms, and the React interfaces that make complex systems feel
+                A portfolio of personal projects: creator marketplaces, legal-tech tools,
+                gov-tech platforms, that promote engagement and complex information feel
                 clear.
               </p>
               <div className="hero-actions">
@@ -348,7 +348,7 @@ function App() {
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
                   <strong>Tom Lenehan</strong>
-                  <span>Personal AI product portfolio</span>
+                  <span></span>
                   <small>Philadelphia, PA</small>
                 </div>
               </div>
