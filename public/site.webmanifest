@@ -1,0 +1,19 @@
+{
+  "name": "Tom Lenehan Portfolio",
+  "short_name": "Tom Lenehan",
+  "background_color": "#101010",
+  "theme_color": "#101010",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/android-chrome-192x192.png",
+      "sizes": "172x172",
+      "type": "image/png"
+    },
+    {
+      "src": "/android-chrome-512x512.png",
+      "sizes": "172x172",
+      "type": "image/png"
+    }
+  ]
+}
