@@ -83,24 +83,24 @@ const projects = [
 
 const skillGroups = [
   {
-    title: "AI Systems",
-    icon: Bot,
-    items: ["RAG", "LangGraph", "LangChain", "LlamaIndex", "OpenAI", "Pinecone", "Chroma"],
-  },
-  {
     title: "Product Frontends",
     icon: Code2,
-    items: ["React", "Vite", "TypeScript", "JavaScript", "Tailwind", "Chakra UI", "Framer Motion"],
+    items: ["React", "TypeScript", "JavaScript", "Tailwind", "Vite", "Framer Motion", "Chakra UI"],
   },
   {
     title: "Backends",
     icon: Database,
-    items: ["Python", "Django", "FastAPI", "PostgreSQL", "SQLAlchemy", "REST APIs", "Auth"],
+    items: ["Python", "FastAPI", "Django", "PostgreSQL", "REST APIs", "Auth", "SQLAlchemy"],
+  },
+  {
+    title: "AI Systems",
+    icon: Bot,
+    items: ["OpenAI", "RAG", "LangChain", "LangGraph", "Pinecone", "Chroma", "LlamaIndex"],
   },
   {
     title: "Infrastructure",
     icon: Network,
-    items: ["Docker", "AWS EC2", "AWS RDS", "SageMaker", "Kinesis", "Redshift", "Git"],
+    items: ["Docker", "AWS EC2", "AWS RDS", "Git", "SageMaker", "Kinesis", "Redshift"],
   },
 ];
 
@@ -401,11 +401,10 @@ function App() {
             <div className="systems-band">
               <div className="systems-copy">
                 <span className="eyebrow">Operating Style</span>
-                <h2>Founder pace, senior-engineer restraint.</h2>
+                <h2>End-to-end product development.</h2>
                 <p>
-                  I like products where the model, database, API, UI, and business loop all have to
-                  make sense together. The work usually starts with messy domain knowledge and ends
-                  with something a real person can use repeatedly.
+                  I build across the model layer, database, API, and interface, turning ambiguous
+                  product requirements into reliable software people can use.
                 </p>
               </div>
               <div className="system-tiles" aria-label="Operating strengths">
@@ -421,8 +420,8 @@ function App() {
         <section className="section skills-section" id="skills">
           <SectionHeading
             eyebrow="Technical Range"
-            title="AI fluency with the boring parts handled too."
-            copy="The personal projects above share the same practical stack: model workflows, auth, container boundaries, data models, dashboards, integrations, and the small product decisions that keep tools usable."
+            title="Full-stack skills for AI-powered products."
+            copy="Experience across React and TypeScript interfaces, Python APIs, PostgreSQL data models, cloud delivery, and LLM-powered workflows."
           />
           <div className="skills-grid">
             {skillGroups.map((group, index) => {
