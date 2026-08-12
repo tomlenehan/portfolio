@@ -348,8 +348,24 @@ function App() {
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
                   <strong>Tom Lenehan</strong>
-                  <span></span>
-                  <small>Philadelphia, PA</small>
+                  <div className="profile-card__links" aria-label="Tom Lenehan resume formats">
+                    <a
+                      href="https://drive.google.com/file/d/1K3qrQ215rZhv-ROG6di7RDk61oP47e81/view?usp=sharing"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      PDF resume
+                      <ArrowUpRight aria-hidden="true" />
+                    </a>
+                    <a
+                      href="https://docs.google.com/document/d/1B-ksrPfLnihlmnRackChGDFTy4q1pGic/edit?usp=sharing&ouid=103197416881740540417&rtpof=true&sd=true"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      Word resume
+                      <ArrowUpRight aria-hidden="true" />
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -403,15 +419,16 @@ function App() {
                 <span className="eyebrow">Operating Style</span>
                 <h2>End-to-end product development.</h2>
                 <p>
-                  I build across the model layer, database, API, and interface, turning ambiguous
-                  product requirements into reliable software people can use.
+                  I build across the model layer, database, API, and interface. I communicate
+                  clearly with clients, product teams, and developers, translating priorities and
+                  tradeoffs into reliable software people can use.
                 </p>
               </div>
               <div className="system-tiles" aria-label="Operating strengths">
                 <span><Workflow /> Agentic workflows</span>
                 <span><ShieldCheck /> Evaluation habits</span>
-                <span><Users /> User feedback loops</span>
-                <span><Server /> Dockerized delivery</span>
+                <span><Users /> Teamwork</span>
+                <span><Server /> Delivery</span>
               </div>
             </div>
           </Parallax>

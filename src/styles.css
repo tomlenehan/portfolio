@@ -278,15 +278,40 @@ img {
   line-height: 1.2;
 }
 
-.profile-card span,
-.profile-card small {
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.35;
+.profile-card__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 4px;
 }
 
-.profile-card small {
-  color: var(--quiet);
+.profile-card__links a {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid rgba(245, 197, 66, 0.42);
+  border-radius: 6px;
+  background: rgba(245, 197, 66, 0.1);
+  color: var(--text);
+  font-size: 0.76rem;
+  font-weight: 800;
+  line-height: 1;
+  padding: 7px 8px;
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.profile-card__links a svg {
+  width: 14px;
+  height: 14px;
+}
+
+.profile-card__links a:hover,
+.profile-card__links a:focus-visible {
+  border-color: var(--gold);
+  background: rgba(245, 197, 66, 0.2);
+  outline: none;
+  transform: translateY(-1px);
 }
 
 .button {
