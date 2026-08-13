@@ -551,8 +551,18 @@ img {
   display: grid;
   gap: 22px;
   min-height: 520px;
+  appearance: none;
+  color: var(--text);
+  cursor: pointer;
+  font: inherit;
   padding: 24px;
+  text-align: left;
+  text-decoration: none;
   transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+button.project-card {
+  width: 100%;
 }
 
 .project-card:hover,

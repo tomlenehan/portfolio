@@ -103,7 +103,7 @@ const skillGroups = [
   {
     title: "Infrastructure",
     icon: Network,
-    items: ["Docker", "AWS EC2", "AWS RDS", "Git", "SageMaker", "Kinesis", "Redshift"],
+    items: ["Docker", "AWS EC2", "AWS RDS", "Render", "Git", "SageMaker", "Kinesis", "Redshift"],
   },
 ];
 
@@ -139,19 +139,34 @@ function SectionHeading({ eyebrow, title, copy }) {
 
 function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
   const Icon = project.icon;
+  const isExternal = project.action.type === "external";
+  const Card = isExternal ? motion.a : motion.button;
+  const actionProps = isExternal
+    ? {
+        href: project.action.href,
+        target: "_blank",
+        rel: "noreferrer",
+      }
+    : {
+        type: "button",
+        onClick: onOpenVideo,
+      };
 
   return (
-    <motion.article
+    <Card
       className={`project-card ${isActive ? "is-active" : ""}`}
       style={{
         "--accent": project.accent,
         "--accent-soft": project.accentSoft,
       }}
+      aria-label={`${project.action.label}: ${project.title}`}
       onMouseEnter={onActivate}
+      onFocus={onActivate}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.65, delay: index * 0.08 }}
+      {...actionProps}
     >
       <div className="project-card__topline">
         <div className="project-card__labels">
@@ -180,28 +195,15 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
           <span key={item}>{item}</span>
         ))}
       </div>
-      {project.action.type === "external" ? (
-        <a
-          className="project-card__action"
-          href={project.action.href}
-          target="_blank"
-          rel="noreferrer"
-          onFocus={onActivate}
-        >
-          {project.action.label}
-          <ArrowUpRight aria-hidden="true" />
-        </a>
-      ) : (
-        <button className="project-card__action" type="button" onClick={onOpenVideo} onFocus={onActivate}>
-          {project.action.label}
-          <Play aria-hidden="true" />
-        </button>
-      )}
-    </motion.article>
+      <span className="project-card__action">
+        {project.action.label}
+        {isExternal ? <ArrowUpRight aria-hidden="true" /> : <Play aria-hidden="true" />}
+      </span>
+    </Card>
   );
 }
 
-function HeroConstellation({ activeProject, setActiveProject }) {
+function HeroConstellation({ activeProject, setActiveProject, onOpenProject }) {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
 
   const handlePointerMove = (event) => {
@@ -238,12 +240,12 @@ function HeroConstellation({ activeProject, setActiveProject }) {
             type="button"
             onFocus={() => setActiveProject(project.title)}
             onMouseEnter={() => setActiveProject(project.title)}
-            onClick={() => setActiveProject(project.title)}
+            onClick={() => onOpenProject(project)}
             style={{
               "--accent": project.accent,
               "--accent-soft": project.accentSoft,
             }}
-            aria-label={`Highlight ${project.title}`}
+            aria-label={`${project.action.label}: ${project.title}`}
           >
             <img src={project.logo} alt="" />
             <span>{project.title}</span>
@@ -271,6 +273,17 @@ function App() {
     () => projects.find((project) => project.title === activeProject) ?? projects[0],
     [activeProject],
   );
+
+  const handleOpenProject = (project) => {
+    setActiveProject(project.title);
+
+    if (project.action.type === "video") {
+      setIsLawCrawlVideoOpen(true);
+      return;
+    }
+
+    window.open(project.action.href, "_blank", "noopener,noreferrer");
+  };
 
   useEffect(() => {
     if (!isLawCrawlVideoOpen) {
@@ -382,7 +395,11 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <HeroConstellation activeProject={activeProject} setActiveProject={setActiveProject} />
+              <HeroConstellation
+                activeProject={activeProject}
+                setActiveProject={setActiveProject}
+                onOpenProject={handleOpenProject}
+              />
               <div
                 className="active-project-readout"
                 style={{
@@ -412,7 +429,7 @@ function App() {
                 index={index}
                 isActive={project.title === activeProject}
                 onActivate={() => setActiveProject(project.title)}
-                onOpenVideo={() => setIsLawCrawlVideoOpen(true)}
+                onOpenVideo={() => handleOpenProject(project)}
               />
             ))}
           </div>
