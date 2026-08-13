@@ -6,7 +6,10 @@ import {
   Bot,
   Code2,
   Database,
+  FileText,
+  FileType,
   FileSearch,
+  Github,
   Landmark,
   Mail,
   Network,
@@ -347,23 +350,26 @@ function App() {
               <div className="profile-card" aria-label="Tom Lenehan profile">
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
-                  <strong>Tom Lenehan</strong>
-                  <div className="profile-card__links" aria-label="Tom Lenehan resume formats">
+                  <div className="profile-card__links" aria-label="Tom Lenehan links">
                     <a
                       href="https://drive.google.com/file/d/1K3qrQ215rZhv-ROG6di7RDk61oP47e81/view?usp=sharing"
                       target="_blank"
                       rel="noreferrer"
                     >
+                      <FileText aria-hidden="true" />
                       PDF resume
-                      <ArrowUpRight aria-hidden="true" />
                     </a>
                     <a
-                      href="https://docs.google.com/document/d/1B-ksrPfLnihlmnRackChGDFTy4q1pGic/edit?usp=sharing&ouid=103197416881740540417&rtpof=true&sd=true"
+                      href="https://docs.google.com/document/d/1ekbjXPwS_-tONQMeP4ZVrCL6a1hkbfQc/edit?usp=sharing&ouid=103197416881740540417&rtpof=true&sd=true"
                       target="_blank"
                       rel="noreferrer"
                     >
+                      <FileType aria-hidden="true" />
                       Word resume
-                      <ArrowUpRight aria-hidden="true" />
+                    </a>
+                    <a href="https://github.com/tomlenehan" target="_blank" rel="noreferrer">
+                      <Github aria-hidden="true" />
+                      GitHub
                     </a>
                   </div>
                 </div>
