@@ -11,6 +11,7 @@ import {
   FileSearch,
   Github,
   Landmark,
+  Linkedin,
   Mail,
   Network,
   Play,
@@ -379,6 +380,14 @@ function App() {
                     >
                       <FileType aria-hidden="true" />
                       Word resume
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/tom-lenehan/"
+                      target="_blank"
+                      rel="noreferrer"
+                    >
+                      <Linkedin aria-hidden="true" />
+                      LinkedIn
                     </a>
                     <a href="https://github.com/tomlenehan" target="_blank" rel="noreferrer">
                       <Github aria-hidden="true" />
