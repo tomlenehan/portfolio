@@ -366,20 +366,12 @@ function App() {
                 <div>
                   <div className="profile-card__links" aria-label="Tom Lenehan links">
                     <a
-                      href="https://drive.google.com/file/d/1K3qrQ215rZhv-ROG6di7RDk61oP47e81/view?usp=sharing"
+                      href="https://drive.google.com/file/d/1E6MiXLQw1a_lkSIoTriASnqUrOJOoQaO/"
                       target="_blank"
                       rel="noreferrer"
                     >
                       <FileText aria-hidden="true" />
-                      PDF resume
-                    </a>
-                    <a
-                      href="https://docs.google.com/document/d/1ekbjXPwS_-tONQMeP4ZVrCL6a1hkbfQc/edit?usp=sharing&ouid=103197416881740540417&rtpof=true&sd=true"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FileType aria-hidden="true" />
-                      Word resume
+                      Resume
                     </a>
                     <a
                       href="https://www.linkedin.com/in/tom-lenehan/"
