@@ -38,7 +38,7 @@ const projects = [
       "Built as a DB-backed, role-aware MVP with active bounty discovery, leaderboards, submissions, and creator/brand dashboards.",
     stack: ["React", "Vite", "Tailwind", "FastAPI", "PostgreSQL", "Docker", "JWT"],
     signals: ["Live API surfaces", "Role-aware dashboards", "Marketplace mechanics"],
-    videoId: "GBRpuZTXsMk",
+    videoId: "nS5-l1Nb6KE",
     action: {
       type: "external",
       href: "https://brandbounty.biz/",
