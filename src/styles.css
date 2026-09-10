@@ -548,6 +548,7 @@ img {
 }
 
 .project-card {
+  position: relative;
   display: grid;
   gap: 22px;
   min-height: 520px;
@@ -566,6 +567,7 @@ button.project-card {
 }
 
 .project-card:hover,
+.project-card:focus-within,
 .project-card:focus-visible,
 .project-card.is-active {
   border-color: color-mix(in srgb, var(--accent), white 18%);
@@ -651,6 +653,26 @@ button.project-card {
   font-size: 1.02rem;
 }
 
+.project-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  align-self: end;
+  gap: 12px;
+}
+
+.project-card__action--primary::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 8px;
+}
+
+.project-card__action--demo {
+  position: relative;
+  z-index: 1;
+}
+
 .project-card__action {
   display: inline-flex;
   width: fit-content;
@@ -678,8 +700,11 @@ button.project-card {
 .project-card__action:focus-visible {
   border-color: color-mix(in srgb, var(--accent), white 20%);
   background: color-mix(in srgb, var(--accent-soft), white 8%);
-  outline: none;
-  transform: translateY(-2px);
+}
+
+.project-card__action:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
 }
 
 .signal-list,

@@ -38,6 +38,7 @@ const projects = [
       "Built as a DB-backed, role-aware MVP with active bounty discovery, leaderboards, submissions, and creator/brand dashboards.",
     stack: ["React", "Vite", "Tailwind", "FastAPI", "PostgreSQL", "Docker", "JWT"],
     signals: ["Live API surfaces", "Role-aware dashboards", "Marketplace mechanics"],
+    videoId: "GBRpuZTXsMk",
     action: {
       type: "external",
       href: "https://brandbounty.biz/",
@@ -78,6 +79,7 @@ const projects = [
       "Founded and shipped an AI review product using embeddings, agents, evaluators, fine-tuning experiments, and document chat workflows.",
     stack: ["Python", "Django", "React", "LangChain", "OpenAI", "Pinecone", "PDF review"],
     signals: ["Clause-focused review", "Vector search", "Agentic chat"],
+    videoId: "NZmiZ2CM-18",
     action: {
       type: "video",
       label: "Watch demo",
@@ -141,7 +143,7 @@ function SectionHeading({ eyebrow, title, copy }) {
 function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
   const Icon = project.icon;
   const isExternal = project.action.type === "external";
-  const Card = isExternal ? motion.a : motion.button;
+  const Action = isExternal ? "a" : "button";
   const actionProps = isExternal
     ? {
         href: project.action.href,
@@ -154,20 +156,19 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
       };
 
   return (
-    <Card
+    <motion.article
       className={`project-card ${isActive ? "is-active" : ""}`}
       style={{
         "--accent": project.accent,
         "--accent-soft": project.accentSoft,
       }}
-      aria-label={`${project.action.label}: ${project.title}`}
+      aria-label={project.title}
       onMouseEnter={onActivate}
       onFocus={onActivate}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
       transition={{ duration: 0.65, delay: index * 0.08 }}
-      {...actionProps}
     >
       <div className="project-card__topline">
         <div className="project-card__labels">
@@ -196,11 +197,28 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
           <span key={item}>{item}</span>
         ))}
       </div>
-      <span className="project-card__action">
-        {project.action.label}
-        {isExternal ? <ArrowUpRight aria-hidden="true" /> : <Play aria-hidden="true" />}
-      </span>
-    </Card>
+      <div className="project-card__actions">
+        <Action
+          className="project-card__action project-card__action--primary"
+          aria-label={`${project.action.label}: ${project.title}`}
+          {...actionProps}
+        >
+          {project.action.label}
+          {isExternal ? <ArrowUpRight aria-hidden="true" /> : <Play aria-hidden="true" />}
+        </Action>
+        {isExternal && project.videoId ? (
+          <button
+            className="project-card__action project-card__action--demo"
+            type="button"
+            onClick={onOpenVideo}
+            aria-label={`Watch demo: ${project.title}`}
+          >
+            Watch demo
+            <Play aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
+    </motion.article>
   );
 }
 
@@ -259,7 +277,7 @@ function HeroConstellation({ activeProject, setActiveProject, onOpenProject }) {
 
 function App() {
   const [activeProject, setActiveProject] = useState(projects[0].title);
-  const [isLawCrawlVideoOpen, setIsLawCrawlVideoOpen] = useState(false);
+  const [videoProject, setVideoProject] = useState(null);
   const videoDialogRef = useRef(null);
   const { scrollYProgress } = useScroll();
   const smoothProgress = useSpring(scrollYProgress, {
@@ -279,7 +297,7 @@ function App() {
     setActiveProject(project.title);
 
     if (project.action.type === "video") {
-      setIsLawCrawlVideoOpen(true);
+      setVideoProject(project);
       return;
     }
 
@@ -287,16 +305,17 @@ function App() {
   };
 
   useEffect(() => {
-    if (!isLawCrawlVideoOpen) {
+    if (!videoProject) {
       return undefined;
     }
 
     const handleKeyDown = (event) => {
       if (event.key === "Escape") {
-        setIsLawCrawlVideoOpen(false);
+        setVideoProject(null);
       }
     };
 
+    const trigger = document.activeElement;
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", handleKeyDown);
@@ -305,8 +324,9 @@ function App() {
     return () => {
       document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", handleKeyDown);
+      trigger?.focus();
     };
-  }, [isLawCrawlVideoOpen]);
+  }, [videoProject]);
 
   return (
     <div className="site-shell">
@@ -430,7 +450,7 @@ function App() {
                 index={index}
                 isActive={project.title === activeProject}
                 onActivate={() => setActiveProject(project.title)}
-                onOpenVideo={() => handleOpenProject(project)}
+                onOpenVideo={() => setVideoProject(project)}
               />
             ))}
           </div>
@@ -505,13 +525,13 @@ function App() {
         </div>
       </footer>
 
-      {isLawCrawlVideoOpen ? (
+      {videoProject ? (
         <div
           className="video-modal"
           role="presentation"
           onMouseDown={(event) => {
             if (event.target === event.currentTarget) {
-              setIsLawCrawlVideoOpen(false);
+              setVideoProject(null);
             }
           }}
         >
@@ -520,27 +540,27 @@ function App() {
             ref={videoDialogRef}
             role="dialog"
             aria-modal="true"
-            aria-labelledby="lawcrawl-video-title"
+            aria-labelledby="project-video-title"
             tabIndex={-1}
           >
             <div className="video-modal__header">
               <div>
-                <span>LawCrawl</span>
-                <h2 id="lawcrawl-video-title">Product demo</h2>
+                <span>{videoProject.title}</span>
+                <h2 id="project-video-title">Product demo</h2>
               </div>
               <button
                 className="video-modal__close"
                 type="button"
-                onClick={() => setIsLawCrawlVideoOpen(false)}
-                aria-label="Close LawCrawl demo"
+                onClick={() => setVideoProject(null)}
+                aria-label={`Close ${videoProject.title} demo`}
               >
                 <X aria-hidden="true" />
               </button>
             </div>
             <div className="video-modal__frame">
               <iframe
-                src="https://www.youtube-nocookie.com/embed/NZmiZ2CM-18?autoplay=1&rel=0&modestbranding=1"
-                title="LawCrawl product demo"
+                src={`https://www.youtube-nocookie.com/embed/${videoProject.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                title={`${videoProject.title} product demo`}
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
               />
