@@ -79,8 +79,10 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .section-heading p, .systems-copy p, .contact-section p { color: var(--muted); font-size: 1rem; line-height: 1.8; margin: 0; }
 .project-section { border-top: 1px solid var(--line); padding-top: 64px; }
 .project-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 20px; }
-.project-card { display: flex; flex-direction: column; gap: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); padding: 28px; transition: border-color .2s; }
+.project-card { position: relative; display: flex; flex-direction: column; gap: 22px; border: 1px solid var(--line); border-radius: 12px; background: var(--bg-2); cursor: pointer; padding: 28px; transition: border-color .2s; }
 .project-card:hover, .project-card:focus-within { border-color: var(--accent); }
+.project-card__hit-area { position: absolute; z-index: 1; inset: 0; width: 100%; height: 100%; border: 0; border-radius: inherit; background: transparent; cursor: pointer; }
+.project-card__hit-area:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 .project-card__topline { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; }
 .project-card__labels { display: grid; gap: 7px; color: var(--muted); font-size: .7rem; }
 .project-type { color: var(--gold); text-transform: uppercase; letter-spacing: .07em; font-size: .62rem; }
@@ -93,7 +95,7 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .project-card__impact { padding-top: 19px; border-top: 1px solid var(--line); }
 .tech-list { display: flex; flex-wrap: wrap; gap: 6px 12px; }
 .tech-list span { color: var(--quiet); font-size: .73rem; line-height: 1.6; }
-.project-card__actions { display: flex; gap: 18px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
+.project-card__actions { position: relative; z-index: 2; display: flex; gap: 18px; flex-wrap: wrap; margin-top: auto; padding-top: 8px; }
 .project-card__action { display: inline-flex; align-items: center; gap: 8px; border: 0; padding: 8px 0; color: var(--text); background: transparent; font-size: .8rem; cursor: pointer; }
 .project-card__action:hover { color: var(--gold); }
 .project-card__action svg { width: 15px; height: 15px; }
