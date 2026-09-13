@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useSpring, useTransform } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, MotionConfig, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Parallax } from "react-scroll-parallax";
 import {
   ArrowUpRight,
@@ -7,7 +7,6 @@ import {
   Code2,
   Database,
   FileText,
-  FileType,
   FileSearch,
   Github,
   Landmark,
@@ -33,11 +32,10 @@ const projects = [
     accent: "#14b8a6",
     accentSoft: "rgba(20, 184, 166, 0.18)",
     summary:
-      "A challenge-based campaign platform where brands post social bounties and creators compete for milestone-driven prizes.",
+      "A marketplace where brands launch social campaigns and creators compete for prizes.",
     impact:
-      "Built as a DB-backed, role-aware MVP with active bounty discovery, leaderboards, submissions, and creator/brand dashboards.",
-    stack: ["React", "Vite", "Tailwind", "FastAPI", "PostgreSQL", "Docker", "JWT"],
-    signals: ["Live API surfaces", "Role-aware dashboards", "Marketplace mechanics"],
+      "I built campaign discovery, creator submissions, leaderboards, and dedicated dashboards for brands and creators.",
+    stack: ["React", "FastAPI", "PostgreSQL", "Docker"],
     videoId: "nS5-l1Nb6KE",
     action: {
       type: "external",
@@ -47,18 +45,17 @@ const projects = [
   },
   {
     title: "Question Politics",
-    projectType: "Personal Nonprofit Project",
+    projectType: "Nonprofit · Founder",
     kicker: "Civic tech nonprofit",
     logo: "/assets/projects/question-politics-logo.png",
     icon: Landmark,
     accent: "#3b82f6",
     accentSoft: "rgba(59, 130, 246, 0.18)",
     summary:
-      "A Django and React platform that turns congressional bills into accessible summaries and helps people engage with representatives.",
+      "Tools that explain congressional legislation in plain English and make it easier to contact representatives.",
     impact:
-      "Founded the nonprofit product, pairing LLM bill translation with representative lookup, outreach flows, Twilio calling, and congressional data imports.",
-    stack: ["Django", "React", "PostgreSQL", "OpenAI", "LangChain", "SerpAPI", "Twilio"],
-    signals: ["Plain-English bills", "Representative outreach", "Congress.gov imports"],
+      "I built the product, secured a $100K Google Ad Grant, and managed advertising and analytics to grow and measure its reach.",
+    stack: ["Django", "React", "PostgreSQL", "OpenAI", "Twilio"],
     action: {
       type: "external",
       href: "https://questionpolitics.org/",
@@ -67,7 +64,7 @@ const projects = [
   },
   {
     title: "LawCrawl",
-    projectType: "Personal Project",
+    projectType: "Founder · 2022–2024",
     kicker: "AI contract review",
     logo: "/assets/projects/lawcrawl-mark.png",
     icon: FileSearch,
@@ -76,9 +73,8 @@ const projects = [
     summary:
       "A legal document workspace for uploading contracts, surfacing unusual terms, and asking plain-English follow-up questions.",
     impact:
-      "Founded and shipped an AI review product using embeddings, agents, evaluators, fine-tuning experiments, and document chat workflows.",
-    stack: ["Python", "Django", "React", "LangChain", "OpenAI", "Pinecone", "PDF review"],
-    signals: ["Clause-focused review", "Vector search", "Agentic chat"],
+      "I built the contract-analysis product with Python, LangGraph, embeddings, and evaluation, then used customer feedback to improve its features and interface.",
+    stack: ["Python", "React", "LangGraph", "OpenAI", "Pinecone"],
     videoId: "NZmiZ2CM-18",
     action: {
       type: "video",
@@ -88,32 +84,24 @@ const projects = [
 ];
 
 const skillGroups = [
-  {
-    title: "Product Frontends",
-    icon: Code2,
-    items: ["React", "TypeScript", "JavaScript", "Tailwind", "Vite", "Framer Motion", "Chakra UI"],
-  },
-  {
-    title: "Backends",
-    icon: Database,
-    items: ["Python", "FastAPI", "Django", "PostgreSQL", "REST APIs", "Auth", "SQLAlchemy"],
-  },
-  {
-    title: "AI Systems",
-    icon: Bot,
-    items: ["OpenAI", "RAG", "LangChain", "LangGraph", "Pinecone", "Chroma", "LlamaIndex"],
-  },
-  {
-    title: "Infrastructure",
-    icon: Network,
-    items: ["Docker", "AWS EC2", "AWS RDS", "Render", "Git", "SageMaker", "Kinesis", "Redshift"],
-  },
+  { title: "Interfaces", icon: Code2, items: ["JavaScript", "React"] },
+  { title: "APIs & data", icon: Database, items: ["Python", "Django", "FastAPI", "PostgreSQL", "Azure SQL Server"] },
+  { title: "Applied AI", icon: Bot, items: ["OpenAI", "LangChain", "LangGraph", "LlamaIndex", "Pinecone", "Chroma"] },
+  { title: "Cloud & delivery", icon: Network, items: ["AWS Lambda", "EC2", "RDS", "Kinesis", "Redshift", "SageMaker", "Docker", "Render"] },
 ];
 
-const navItems = [
-  ["Projects", "#projects"],
-  ["Skills", "#skills"],
+const experience = [
+  { company: "MyGovWatch.com", role: "Lead Developer", dates: "2024–Present", copy: "As the sole full-time engineer, I own platform reliability, roadmap priorities, and ongoing improvements. I build AI automation to replace manual workflows, support data ingestion with Sequentum and Azure SQL Server, and coordinate third-party engineers." },
+  { company: "LawCrawl", role: "Founder", dates: "2022–2024", copy: "Built an AI contract-analysis product from architecture through delivery, combining agentic workflows, vector embeddings, evaluation, and fine-tuning. Turned user feedback into product and interface improvements." },
+  { company: "Trellis", role: "Senior Developer", dates: "2022–2023", copy: "Applied LLMs and machine learning to legal-document analysis, testing retrieval and classification methods to help attorneys find and evaluate relevant information." },
+  { company: "Proper Media", role: "Senior Developer", dates: "2015–2022", copy: "Co-designed a real-time header-bidding platform with integrations across dozens of ad exchanges. Built AWS data pipelines and internal BI tools, and led monetization initiatives for Salon and Snopes." },
 ];
+const earlierExperience = [
+  { company: "Youtily", role: "Full-Stack Developer", dates: "2014–2015", copy: "Built a local-search marketing platform, working directly with founders on product strategy, features, and integrations." },
+  { company: "Norima Consulting", role: "Developer", dates: "2012–2014", copy: "Built features for an electronic medical record system serving 95,000+ patients in a HIPAA-regulated environment." },
+  { company: "AppNexus", role: "Auditor, Creative Inventory", dates: "2011–2012", copy: "Performed quality assurance on display advertising assets and inventory." },
+];
+const navItems = [["Projects", "#projects"], ["Experience", "#experience"], ["Skills", "#skills"]];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 28 },
@@ -140,7 +128,7 @@ function SectionHeading({ eyebrow, title, copy }) {
   );
 }
 
-function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
+function ProjectCard({ project, index, onOpenVideo }) {
   const Icon = project.icon;
   const isExternal = project.action.type === "external";
   const Action = isExternal ? "a" : "button";
@@ -157,14 +145,12 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
 
   return (
     <motion.article
-      className={`project-card ${isActive ? "is-active" : ""}`}
+      className="project-card"
       style={{
         "--accent": project.accent,
         "--accent-soft": project.accentSoft,
       }}
       aria-label={project.title}
-      onMouseEnter={onActivate}
-      onFocus={onActivate}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.25 }}
@@ -187,11 +173,6 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
         </div>
       </div>
       <p className="project-card__impact">{project.impact}</p>
-      <div className="signal-list" aria-label={`${project.title} highlights`}>
-        {project.signals.map((signal) => (
-          <span key={signal}>{signal}</span>
-        ))}
-      </div>
       <div className="tech-list" aria-label={`${project.title} stack`}>
         {project.stack.map((item) => (
           <span key={item}>{item}</span>
@@ -222,61 +203,36 @@ function ProjectCard({ project, index, isActive, onActivate, onOpenVideo }) {
   );
 }
 
-function HeroConstellation({ activeProject, setActiveProject, onOpenProject }) {
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-
-  const handlePointerMove = (event) => {
-    const rect = event.currentTarget.getBoundingClientRect();
-    const x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-    const y = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-    setTilt({ x, y });
-  };
-
+function ProjectIndex({ onOpenProject }) {
   return (
-    <div
-      className="constellation"
-      onPointerMove={handlePointerMove}
-      onPointerLeave={() => setTilt({ x: 0, y: 0 })}
-      style={{
-        "--tilt-x": `${tilt.y * -5}deg`,
-        "--tilt-y": `${tilt.x * 7}deg`,
-        "--pointer-x": `${50 + tilt.x * 10}%`,
-        "--pointer-y": `${50 + tilt.y * 10}%`,
-      }}
-    >
-      <div className="constellation__grid" aria-hidden="true" />
-      <div className="constellation__core">
-        <span className="core-label">Product systems</span>
-        <strong>AI + full stack</strong>
-        <span>React, Python, data, infrastructure</span>
+    <div className="work-index">
+      <div className="work-index__intro">
+        <span className="eyebrow">From idea to production</span>
+        <h2>Products I’ve built.</h2>
+        <p>Independent work in the creator economy, civic participation, and applied AI.</p>
       </div>
-      {projects.map((project, index) => {
-        const isActive = project.title === activeProject;
-        return (
-          <button
-            className={`orbit-node orbit-node--${index + 1} ${isActive ? "is-active" : ""}`}
-            key={project.title}
-            type="button"
-            onFocus={() => setActiveProject(project.title)}
-            onMouseEnter={() => setActiveProject(project.title)}
-            onClick={() => onOpenProject(project)}
-            style={{
-              "--accent": project.accent,
-              "--accent-soft": project.accentSoft,
-            }}
-            aria-label={`${project.action.label}: ${project.title}`}
-          >
-            <img src={project.logo} alt="" />
-            <span>{project.title}</span>
-          </button>
-        );
-      })}
+      {projects.map((project, index) => (
+        <button className="work-index__project" key={project.title} onClick={() => onOpenProject(project)} aria-label={`${project.action.label}: ${project.title}`}>
+          <span className="work-index__number">0{index + 1}</span>
+          <img src={project.logo} alt="" />
+          <span><strong>{project.title}</strong><small>{project.kicker}</small></span>
+          {project.action.type === "video" ? <Play aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
+        </button>
+      ))}
+      <a className="work-index__current" href="#experience"><span className="pulse-dot" /> Currently leading development at MyGovWatch <ArrowUpRight aria-hidden="true" /></a>
     </div>
   );
 }
 
+function ExperienceRow({ item }) {
+  return <article className="experience-row">
+    <div><span className="experience-date">{item.dates}</span><h3>{item.company}</h3><span className="experience-role">{item.role}</span></div>
+    <p>{item.copy}</p>
+  </article>;
+}
+
 function App() {
-  const [activeProject, setActiveProject] = useState(projects[0].title);
+  const reducedMotion = useReducedMotion();
   const [videoProject, setVideoProject] = useState(null);
   const videoDialogRef = useRef(null);
   const { scrollYProgress } = useScroll();
@@ -288,14 +244,7 @@ function App() {
   const heroY = useTransform(smoothProgress, [0, 0.28], [0, -90]);
   const heroOpacity = useTransform(smoothProgress, [0, 0.22], [1, 0.65]);
 
-  const active = useMemo(
-    () => projects.find((project) => project.title === activeProject) ?? projects[0],
-    [activeProject],
-  );
-
   const handleOpenProject = (project) => {
-    setActiveProject(project.title);
-
     if (project.action.type === "video") {
       setVideoProject(project);
       return;
@@ -329,7 +278,9 @@ function App() {
   }, [videoProject]);
 
   return (
+    <MotionConfig reducedMotion="user">
     <div className="site-shell">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <motion.div className="scroll-progress" style={{ scaleX: smoothProgress }} />
 
       <header className="site-nav">
@@ -346,10 +297,10 @@ function App() {
         </nav>
       </header>
 
-      <main id="top">
-        <section className="hero-section">
-          <motion.div className="hero-bg" style={{ y: heroY, opacity: heroOpacity }} aria-hidden="true">
-            <Parallax speed={-16}>
+      <main id="main-content">
+        <section className="hero-section" id="top">
+          <motion.div className="hero-bg" style={reducedMotion ? undefined : { y: heroY, opacity: heroOpacity }} aria-hidden="true">
+            <Parallax speed={-16} disabled={reducedMotion}>
               <div className="hero-grid" />
             </Parallax>
           </motion.div>
@@ -363,14 +314,12 @@ function App() {
             >
               <span className="status-pill">
                 <span className="pulse-dot" />
-                Full-stack AI Engineer
+                Senior full-stack software engineer
               </span>
               <h1>Tom Lenehan</h1>
-              <p>
-                A portfolio of personal projects: creator marketplaces, legal-tech tools,
-                gov-tech platforms, that promote engagement and complex information feel
-                clear.
-              </p>
+              <p className="hero-tagline">I turn complex problems into working products.</p>
+              <p className="hero-description">14+ years building software across AI, advertising, and data. I own the work from product direction and architecture through delivery and iteration.</p>
+              <span className="hero-location">Philadelphia, PA · Product, AI &amp; solutions</span>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
                   See projects
@@ -386,12 +335,13 @@ function App() {
                 <div>
                   <div className="profile-card__links" aria-label="Tom Lenehan links">
                     <a
-                      href="https://drive.google.com/file/d/1E6MiXLQw1a_lkSIoTriASnqUrOJOoQaO/"
+                      href="/assets/Tom-Lenehan-Resume.docx"
+                      download
                       target="_blank"
                       rel="noreferrer"
                     >
                       <FileText aria-hidden="true" />
-                      Resume
+                      Resume (DOCX)
                     </a>
                     <a
                       href="https://www.linkedin.com/in/tom-lenehan/"
@@ -416,31 +366,18 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             >
-              <HeroConstellation
-                activeProject={activeProject}
-                setActiveProject={setActiveProject}
+              <ProjectIndex
                 onOpenProject={handleOpenProject}
               />
-              <div
-                className="active-project-readout"
-                style={{
-                  "--accent": active.accent,
-                  "--accent-soft": active.accentSoft,
-                }}
-              >
-                <span>{active.projectType} / {active.kicker}</span>
-                <strong>{active.title}</strong>
-                <p>{active.summary}</p>
-              </div>
             </motion.div>
           </div>
         </section>
 
         <section className="section project-section" id="projects">
           <SectionHeading
-            eyebrow="Selected Personal Projects"
-            title="Three products, one through-line: make complex systems usable."
-            copy="These personal projects span creator marketplaces, legal review, and civic participation. Each one combines product judgment with practical full-stack delivery."
+            eyebrow="Selected projects"
+            title="Built to be used."
+            copy="Products I’ve taken from an initial idea to working software, with ownership of the architecture, interface, and delivery."
           />
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -448,31 +385,36 @@ function App() {
                 key={project.title}
                 project={project}
                 index={index}
-                isActive={project.title === activeProject}
-                onActivate={() => setActiveProject(project.title)}
                 onOpenVideo={() => setVideoProject(project)}
               />
             ))}
           </div>
         </section>
 
+        <section className="section experience-section" id="experience">
+          <SectionHeading eyebrow="Experience" title="A career spent building." copy="From advertising infrastructure and regulated software to AI products and platform leadership." />
+          <div className="experience-list">{experience.map(item => <ExperienceRow key={item.company} item={item} />)}</div>
+          <details className="earlier-experience"><summary>Earlier experience · 2011–2015</summary>{earlierExperience.map(item => <ExperienceRow key={item.company} item={item} />)}</details>
+          <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
+        </section>
+
         <section className="section systems-section">
-          <Parallax speed={-8}>
+          <Parallax speed={-8} disabled={reducedMotion}>
             <div className="systems-band">
               <div className="systems-copy">
-                <span className="eyebrow">Operating Style</span>
+                <span className="eyebrow">How I work</span>
                 <h2>End-to-end product development.</h2>
                 <p>
-                  I build across the model layer, database, API, and interface. I communicate
-                  clearly with clients, product teams, and developers, translating priorities and
-                  tradeoffs into reliable software people can use.
+                  Building across the full stack. Communicating
+                  clearly with clients and product teams and translating their goals and priorities
+                  into reliable products and features.
                 </p>
               </div>
               <div className="system-tiles" aria-label="Operating strengths">
                 <span><Workflow /> Agentic workflows</span>
-                <span><ShieldCheck /> Evaluation habits</span>
-                <span><Users /> Teamwork</span>
-                <span><Server /> Delivery</span>
+                <span><ShieldCheck /> Model evaluation</span>
+                <span><Users /> Technical communication</span>
+                <span><Server /> Platform reliability</span>
               </div>
             </div>
           </Parallax>
@@ -480,9 +422,9 @@ function App() {
 
         <section className="section skills-section" id="skills">
           <SectionHeading
-            eyebrow="Technical Range"
-            title="Full-stack skills for AI-powered products."
-            copy="Experience across React and TypeScript interfaces, Python APIs, PostgreSQL data models, cloud delivery, and LLM-powered workflows."
+            eyebrow="Technical skills"
+            title="Technologies"
+            copy="A practical toolkit for building interfaces, integrating systems, and putting AI into production."
           />
           <div className="skills-grid">
             {skillGroups.map((group, index) => {
@@ -511,6 +453,12 @@ function App() {
           </div>
         </section>
 
+        <section className="section contact-section" id="contact">
+          <span className="eyebrow">Let’s connect</span>
+          <h2>Have a problem worth solving?</h2>
+          <p>I’d love to hear about your team and what you’re building.</p>
+          <a className="button button-primary" href="mailto:Lenehan3@gmail.com">Get in touch <ArrowUpRight aria-hidden="true" /></a>
+        </section>
       </main>
 
       <footer className="site-footer">
@@ -569,6 +517,7 @@ function App() {
         </div>
       ) : null}
     </div>
+    </MotionConfig>
   );
 }
 
