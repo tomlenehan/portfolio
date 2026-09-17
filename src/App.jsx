@@ -31,7 +31,7 @@ const projects = [
     accent: "#14b8a6",
     accentSoft: "rgba(20, 184, 166, 0.18)",
     summary:
-      "A UGC marketplace where creators get rewarded for content that actually performs",
+      "A Creator marketplace where creators get rewarded for content that actually performs",
     impact:
       "Brands create a challenge by defining the social platform, engagement target and reward. Creators compete to reach the target and win the reward. Analysis of the campaign data informs the brand of what type of content works and what doesn't.",
     stack: ["React", "FastAPI", "PostgreSQL", "Docker"],
