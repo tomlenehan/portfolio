@@ -323,7 +323,7 @@ function App() {
               </span>
               <h1>Tom Lenehan</h1>
               <p className="hero-tagline">Turning complex problems into intuitive solutions.</p>
-              <p className="hero-description">14+ years building products across ad tech, legal technology, civic software, healthcare, and AI.</p>
+              <p className="hero-description">14+ years of building.</p>
               <span className="hero-location">Philadelphia, PA · Product, AI &amp; solutions</span>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
