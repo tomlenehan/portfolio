@@ -28,12 +28,12 @@ const projects = [
     kicker: "Creator marketplace",
     logo: "/assets/projects/brand-bounty-mark.png",
     icon: Rocket,
-    accent: "#14b8a6",
-    accentSoft: "rgba(20, 184, 166, 0.18)",
+    accent: "#7dd3fc",
+    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
-      "A Creator marketplace where creators get rewarded for content that actually performs",
+      "A creator marketplace where brands reward social content that meets campaign goals.",
     impact:
-      "Brands create a challenge by defining the social platform, engagement target and reward. Creators compete to reach the target and win the reward. Analysis of the campaign data informs the brand of what type of content works and what doesn't.",
+      "Brands set a platform, engagement target, and reward. Creators compete to reach the goal, while campaign data shows which content performs.",
     stack: ["React", "FastAPI", "PostgreSQL", "Docker"],
     videoId: "nS5-l1Nb6KE",
     action: {
@@ -48,13 +48,13 @@ const projects = [
     kicker: "Civic tech nonprofit",
     logo: "/assets/projects/question-politics-logo.png",
     icon: Landmark,
-    accent: "#3b82f6",
-    accentSoft: "rgba(59, 130, 246, 0.18)",
+    accent: "#7dd3fc",
+    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
-      "Simplifying congressional bills and encouraging engagement between representatives and their constituents.",
+      "A civic platform that makes congressional bills easier to understand and helps constituents engage with representatives.",
     impact:
-      "Founded a nonprofit with the aim of increasing civic engagement. Using AI to translate dense congressional bills into plain English and providing tools to encourage users to dialogue with their representatives.",
-    stack: ["Django", "React", "PostgrSQL", "OpenAI", "Twilio"],
+      "I founded the nonprofit and built AI tools that translate legislation into plain English and make constituent outreach easier.",
+    stack: ["Django", "React", "PostgreSQL", "OpenAI", "Twilio"],
     action: {
       type: "external",
       href: "https://questionpolitics.org/",
@@ -67,12 +67,12 @@ const projects = [
     kicker: "AI contract review",
     logo: "/assets/projects/lawcrawl-mark.png",
     icon: FileSearch,
-    accent: "#f59e0b",
-    accentSoft: "rgba(245, 158, 11, 0.18)",
+    accent: "#7dd3fc",
+    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
-      "An AI-powered contract analysis agent.",
+      "An AI-powered contract analysis tool.",
     impact:
-      "Used agentic AI and fine-tuned models to identify unusual or non-standard language in contracts and other personal legal documents. Enabled asynchronous question-answering while improving on traditional vector RAG by linking responses directly to the relevant page and line numbers in the source document.",
+      "Built with agentic workflows and fine-tuned models to flag unusual terms and answer questions against source documents with page-level references.",
     stack: ["Python", "React", "LangGraph", "OpenAI", "Pinecone"],
     videoId: "NZmiZ2CM-18",
     action: {
@@ -83,10 +83,10 @@ const projects = [
 ];
 
 const skillGroups = [
-  { title: "Frontend", icon: Code2, items: ["JavaScript", "TypeScript", "Node", "React", "Angular", "Vite", "Tailwind"] },
-  { title: "Backend", icon: Database, items: ["Python", "Django", "FastAPI", "PostgreSQL", "MySQL", "PHP", "Laravel", "C#", ".Net"] },
-  { title: "AI", icon: Bot, items: ["OpenAI/Codex", "Anthropic/Claude Code", "Hugging Face (local models)", "LangChain/LangGraph", "LlamaIndex", "Pinecone", "Chroma"] },
-  { title: "Infra", icon: Network, items: ["AWS (EC2, RDS, Lambda, Kinesis, Redshift, Sagemaker)", "Github", "Render", "Docker" ] },
+  { title: "Frontend", icon: Code2, items: ["JavaScript", "TypeScript", "React", "Angular", "Tailwind"] },
+  { title: "Backend", icon: Database, items: ["Python", "Django", "FastAPI", "PostgreSQL", "MySQL", "C#/.NET"] },
+  { title: "AI", icon: Bot, items: ["OpenAI/Codex", "LangChain/LangGraph", "LlamaIndex", "Hugging Face", "Pinecone", "Chroma"] },
+  { title: "Infra", icon: Network, items: ["AWS: EC2, RDS, Lambda, Kinesis, Redshift, SageMaker", "Docker", "Render", "GitHub"] },
 ];
 
 const experience = [
@@ -213,8 +213,8 @@ function ProjectIndex({ onOpenProject }) {
     <div className="work-index">
       <div className="work-index__intro">
         <span className="eyebrow">From concept to production</span>
-        <h2>Personal portfolio.</h2>
-        <p>Projects that I've built in my spare time</p>
+        <h2>Selected work.</h2>
+        <p>Independent products built from concept to working software.</p>
       </div>
       {projects.map((project, index) => (
         <button className="work-index__project" key={project.title} onClick={() => onOpenProject(project)} aria-label={`${project.action.label}: ${project.title}`}>
@@ -319,11 +319,11 @@ function App() {
             >
               <span className="status-pill">
                 <span className="pulse-dot" />
-                Full Stack Builder
+                Senior full-stack engineer
               </span>
               <h1>Tom Lenehan</h1>
               <p className="hero-tagline">Turning complex problems into intuitive solutions.</p>
-              <p className="hero-description">14+ years of experience building across advertising/marketing, legal/gov, healthcare and AI.</p>
+              <p className="hero-description">14+ years building products across ad tech, legal technology, civic software, healthcare, and AI.</p>
               <span className="hero-location">Philadelphia, PA · Product, AI &amp; solutions</span>
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
@@ -381,8 +381,8 @@ function App() {
         <section className="section project-section" id="projects">
           <SectionHeading
             eyebrow="Selected projects"
-            title="Recent Personal Projects."
-            copy="Constantly tinkering and learning. Personal projects that I’ve taken from an idea to a working product."
+            title="Selected independent projects."
+            copy="Independent products I’ve taken from an idea to working software."
           />
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -397,7 +397,11 @@ function App() {
         </section>
 
         <section className="section experience-section" id="experience">
-          <SectionHeading eyebrow="Experience" title="Building products accross industries - from concept to production" copy="From infrastructure to conversational AI" />
+          <SectionHeading
+            eyebrow="Experience"
+            title="14+ years building products that ship."
+            copy="From real-time advertising systems to AI products and regulated software."
+          />
           <div className="experience-list">{experience.map(item => <ExperienceRow key={item.company} item={item} />)}</div>
           <details className="earlier-experience"><summary>Earlier experience · 2011–2015</summary>{earlierExperience.map(item => <ExperienceRow key={item.company} item={item} />)}</details>
           <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
@@ -407,7 +411,7 @@ function App() {
           <Parallax speed={-8} disabled={reducedMotion}>
             <div className="systems-band">
               <div className="systems-copy">
-                <span className="eyebrow">systems people depend on</span>
+                <span className="eyebrow">Systems people depend on</span>
                 <h2>Across complex domains</h2>
                 <p>
                   Building systems where accuracy, scale and trust really matter.
@@ -427,7 +431,7 @@ function App() {
           <SectionHeading
             eyebrow="Skills"
             title="Tools & Skills"
-            copy="A knowledge of many languages and frameworks and a willingness to always learn more."
+            copy="A practical toolkit for building, integrating, and shipping software."
           />
           <div className="skills-grid">
             {skillGroups.map((group, index) => {
