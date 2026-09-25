@@ -399,7 +399,7 @@ function App() {
         <section className="section experience-section" id="experience">
           <SectionHeading
             eyebrow="Experience"
-            title="14+ years building products that ship."
+            title="14+ years building and shipping."
             copy="From real-time advertising systems to AI products and regulated software."
           />
           <div className="experience-list">{experience.map(item => <ExperienceRow key={item.company} item={item} />)}</div>
