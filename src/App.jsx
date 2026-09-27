@@ -43,6 +43,25 @@ const projects = [
     },
   },
   {
+    title: "MemriPlace",
+    projectType: "Personal Project",
+    kicker: "Conversational memory map",
+    logo: "/assets/projects/MemriPlaceLogoLGWhite.png",
+    icon: Network,
+    accent: "#7dd3fc",
+    accentSoft: "rgba(125, 211, 252, 0.16)",
+    summary:
+      "A conversational AI workspace for turning personal memories into a connected memory map.",
+    impact:
+      "Users talk through their memories while PGVector links people, moments, and themes into a map that helps bring a cohesive story into view.",
+    stack: ["Python", "FastAPI", "OpenAI", "React", "TanStack", "Postgres / PGVector"],
+    action: {
+      type: "external",
+      href: "https://memriplace.com/",
+      label: "Visit site",
+    },
+  },
+  {
     title: "Question Politics",
     projectType: "Nonprofit · Founder",
     kicker: "Civic tech nonprofit",
@@ -305,9 +324,7 @@ function App() {
       <main id="main-content">
         <section className="hero-section" id="top">
           <motion.div className="hero-bg" style={reducedMotion ? undefined : { y: heroY, opacity: heroOpacity }} aria-hidden="true">
-            <Parallax speed={-16} disabled={reducedMotion}>
-              <div className="hero-grid" />
-            </Parallax>
+            <div className="hero-grid" />
           </motion.div>
 
           <div className="hero-content">
