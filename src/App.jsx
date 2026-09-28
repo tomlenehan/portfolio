@@ -23,6 +23,25 @@ import {
 
 const projects = [
   {
+    title: "MemriPlace",
+    projectType: "Personal Project",
+    kicker: "Conversational memory map",
+    logo: "/assets/projects/MemriPlaceLogoLGWhite.png",
+    icon: Network,
+    accent: "#7dd3fc",
+    accentSoft: "rgba(125, 211, 252, 0.16)",
+    summary:
+      "A conversational AI workspace for turning personal memories into a connected memory map.",
+    impact:
+      "Users talk through their memories while PGVector links people, moments, and themes into a map that helps bring a cohesive story into view.",
+    stack: ["Python", "FastAPI", "OpenAI", "React", "TanStack", "Postgres / PGVector"],
+    action: {
+      type: "external",
+      href: "https://memriplace.com/",
+      label: "Visit site",
+    },
+  },
+  {
     title: "Brand Bounty",
     projectType: "Personal Project",
     kicker: "Creator marketplace",
@@ -39,25 +58,6 @@ const projects = [
     action: {
       type: "external",
       href: "https://brandbounty.biz/",
-      label: "Visit site",
-    },
-  },
-  {
-    title: "MemriPlace",
-    projectType: "Personal Project",
-    kicker: "Conversational memory map",
-    logo: "/assets/projects/MemriPlaceLogoLGWhite.png",
-    icon: Network,
-    accent: "#7dd3fc",
-    accentSoft: "rgba(125, 211, 252, 0.16)",
-    summary:
-      "A conversational AI workspace for turning personal memories into a connected memory map.",
-    impact:
-      "Users talk through their memories while PGVector links people, moments, and themes into a map that helps bring a cohesive story into view.",
-    stack: ["Python", "FastAPI", "OpenAI", "React", "TanStack", "Postgres / PGVector"],
-    action: {
-      type: "external",
-      href: "https://memriplace.com/",
       label: "Visit site",
     },
   },
