@@ -350,7 +350,7 @@ function App() {
                 Senior Full Stack Engineer - AI & Distributed Systems
               </span>
               <h1>Tom Lenehan</h1>
-              <p className="hero-tagline">14+ years of building creative solution to complex problems.</p>
+              <p className="hero-tagline">14+ years of building creative solutions to complex problems.</p>
               {/*<p className="hero-description">14+ years of building.</p>*/}
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
@@ -362,7 +362,7 @@ function App() {
                   <Mail aria-hidden="true" />
                 </a>
               </div>
-              <span className="hero-location">Philadelphia, PA</span>
+              <span className="hero-location">Currently in Philadelphia, PA</span>
               <div className="profile-card" aria-label="Tom Lenehan profile">
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
