@@ -117,14 +117,14 @@ const skillGroups = [
 ];
 
 const experience = [
-  { company: "MyGovWatch.com", role: "Lead Developer", dates: "2024–Present", copy: "Owning the platform as the sole full-time engineer, from infrastructure and reliability to product priorities and ongoing development. Building AI automation for time-consuming internal workflows, supporting high-volume government data pipelines, and coordinating third-party engineering teams." },
+  { company: "MyGovWatch.com", role: "Lead Engineer", dates: "2024–Present", copy: "Owning the platform as the sole full-time engineer, from infrastructure and reliability to product priorities and ongoing development. Building AI automation for time-consuming internal workflows, supporting high-volume government data pipelines, and coordinating third-party engineering teams." },
   { company: "LawCrawl", role: "Founder", dates: "2022–2024", copy: "built an AI contract-analysis platform from the ground up using agentic workflows, vector RAG, evaluations, and fine-tuned models. Owned the full product lifecycle, using feedback from customers and investors to rapidly iterate on the product and its direction." },
-  { company: "Trellis", role: "Senior Developer", dates: "2022–2023", copy: "Built a hybrid legal-document search system combining vector similarity with Elasticsearch keyword search, improving retrieval across a large repository of legal documents." },
-  { company: "Proper Media", role: "Senior Developer", dates: "2015–2022", copy: "Co-built a real-time-bidding solution with integrations across dozens of ad exchanges. Built AWS data infrastructure for high-volume bidding data and led new monetization initiatives across major publisher properties including Salon and Snopes." },
+  { company: "Trellis", role: "Senior Engineer", dates: "2022–2023", copy: "Built a hybrid legal-document search system combining vector similarity with Elasticsearch keyword search, improving retrieval across a large repository of legal documents." },
+  { company: "Proper Media", role: "Senior Engineer", dates: "2015–2022", copy: "Co-built a real-time-bidding solution with integrations across dozens of ad exchanges. Built AWS data infrastructure for high-volume bidding data and led new monetization initiatives across major publisher properties including Salon and Snopes." },
 ];
 const earlierExperience = [
-  { company: "Youtily", role: "Full-Stack Developer", dates: "2014–2015", copy: "Built a digital marketing platform for small businesses, working closely with the founders on product strategy, new features, and third-party integrations." },
-  { company: "Norima Consulting", role: "Developer", dates: "2012–2014", copy: "Helped build an Electronic Medical Record platform managing data for more than 95,000 patients in a HIPAA-regulated environment." },
+  { company: "Youtily", role: "Full-Stack Engineer", dates: "2014–2015", copy: "Built a digital marketing platform for small businesses, working closely with the founders on product strategy, new features, and third-party integrations." },
+  { company: "Norima Consulting", role: "Engineer", dates: "2012–2014", copy: "Helped build an Electronic Medical Record platform managing data for more than 95,000 patients in a HIPAA-regulated environment." },
   { company: "AppNexus", role: "Auditor, Creative Inventory", dates: "2011–2012", copy: "Worked on quality assurance for a large-scale digital advertising marketplace, reviewing creative assets and maintaining inventory quality." },
 ];
 const navItems = [["Projects", "#projects"], ["Experience", "#experience"], ["Skills", "#skills"]];
@@ -347,12 +347,11 @@ function App() {
             >
               <span className="status-pill">
                 <span className="pulse-dot" />
-                Senior full-stack engineer
+                Senior Full Stack Engineer - AI & Distributed Systems
               </span>
               <h1>Tom Lenehan</h1>
-              <p className="hero-tagline">Turning complex problems into intuitive solutions.</p>
-              <p className="hero-description">14+ years of building.</p>
-              <span className="hero-location">Philadelphia, PA · Product, AI &amp; solutions</span>
+              <p className="hero-tagline">14+ years of building creative solution to complex problems.</p>
+              {/*<p className="hero-description">14+ years of building.</p>*/}
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
                   See projects
@@ -363,6 +362,7 @@ function App() {
                   <Mail aria-hidden="true" />
                 </a>
               </div>
+              <span className="hero-location">Philadelphia, PA</span>
               <div className="profile-card" aria-label="Tom Lenehan profile">
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
