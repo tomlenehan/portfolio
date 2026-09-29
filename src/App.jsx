@@ -27,6 +27,8 @@ const projects = [
     projectType: "Personal Project",
     kicker: "Conversational memory map",
     logo: "/assets/projects/MemriPlaceLogoLGWhite.png",
+    screenshot: "/assets/projects/memriplace-tile.png",
+    screenshotAlt: "MemriPlace homepage",
     icon: Network,
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.16)",
@@ -46,6 +48,8 @@ const projects = [
     projectType: "Personal Project",
     kicker: "Creator marketplace",
     logo: "/assets/projects/brand-bounty-mark.png",
+    screenshot: "/assets/projects/brandbounty-tile.png",
+    screenshotAlt: "Brand Bounty live campaigns",
     icon: Rocket,
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.16)",
@@ -66,6 +70,8 @@ const projects = [
     projectType: "Nonprofit · Founder",
     kicker: "Civic tech nonprofit",
     logo: "/assets/projects/question-politics-logo.png",
+    screenshot: "/assets/projects/questionpolitics-tile.png",
+    screenshotAlt: "Question Politics homepage",
     icon: Landmark,
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.16)",
@@ -85,6 +91,8 @@ const projects = [
     projectType: "Founder · 2022–2024",
     kicker: "AI contract review",
     logo: "/assets/projects/lawcrawl-mark.png",
+    screenshot: "/assets/projects/lawcrawl-tile.png",
+    screenshotAlt: "LawCrawl contract review",
     icon: FileSearch,
     accent: "#7dd3fc",
     accentSoft: "rgba(125, 211, 252, 0.16)",
@@ -180,6 +188,9 @@ function ProjectCard({ project, index, onOpenProject }) {
         onClick={() => onOpenProject(project)}
         aria-label={`${project.action.label}: ${project.title}`}
       />
+      <div className="project-card__media">
+        <img src={project.screenshot} alt={project.screenshotAlt} loading="lazy" decoding="async" />
+      </div>
       <div className="project-card__topline">
         <div className="project-card__labels">
           <span className="project-type">{project.projectType}</span>
