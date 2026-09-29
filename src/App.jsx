@@ -350,7 +350,7 @@ function App() {
                 Senior Full Stack Engineer - AI & Distributed Systems
               </span>
               <h1>Tom Lenehan</h1>
-              <p className="hero-tagline">14+ years of building creative solution to complex problems.</p>
+              <p className="hero-tagline">14+ years of building creative solutions to complex problems.</p>
               {/*<p className="hero-description">14+ years of building.</p>*/}
               <div className="hero-actions">
                 <a className="button button-primary" href="#projects">
