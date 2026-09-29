@@ -89,10 +89,10 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .project-card__labels { display: grid; gap: 7px; color: var(--muted); font-size: .7rem; }
 .project-type { color: var(--gold); text-transform: uppercase; letter-spacing: .07em; font-size: .62rem; }
 .project-card__topline svg { width: 18px; height: 18px; color: var(--quiet); }
-.project-card__brand { display: grid; gap: 24px; }
-.project-card__logo { display: flex; align-items: center; height: 50px; }
-.project-card__logo img { width: 55px; max-height: 50px; object-fit: contain; }
-.project-card h3 { font-size: 1.45rem; font-weight: 600; letter-spacing: -.04em; margin: 0 0 13px; }
+.project-card__brand { display: grid; grid-template-columns: 76px minmax(0,1fr); align-items: center; gap: 18px; }
+.project-card__logo { display: flex; align-items: center; justify-content: center; height: 64px; }
+.project-card__logo img { width: 72px; max-height: 64px; object-fit: contain; }
+.project-card h3 { font-size: 1.45rem; font-weight: 600; letter-spacing: -.04em; margin: 0 0 8px; }
 .project-card__brand p, .project-card__impact { margin: 0; color: var(--muted); line-height: 1.75; font-size: .88rem; }
 .project-card__impact { padding-top: 19px; border-top: 1px solid var(--line); }
 .tech-list { display: flex; flex-wrap: wrap; gap: 6px 12px; }
@@ -230,7 +230,7 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
  .work-index { padding: 26px; }
  .project-grid { grid-template-columns: 1fr; }
  .project-card { padding: 14px 14px 24px; }
- .project-card__brand { grid-template-columns: 56px 1fr; gap: 22px; align-items: start; }
+ .project-card__brand { grid-template-columns: 68px minmax(0,1fr); gap: 16px; }
  .systems-band { grid-template-columns: 1fr; gap: 30px; padding: 30px; }
  .system-tiles { grid-template-columns: 1fr 1fr; }
  .experience-row { gap: 24px; grid-template-columns: 1fr 1.4fr; }
@@ -255,7 +255,9 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
  .work-index__project strong { font-size: .9rem; }
  .section, .site-footer { width: calc(100% - 40px); }
  .project-card { padding: 12px 12px 22px; }
- .project-card__brand { grid-template-columns: 1fr; gap: 18px; }
+ .project-card__brand { grid-template-columns: 58px minmax(0,1fr); gap: 14px; }
+ .project-card__logo { height: 54px; }
+ .project-card__logo img { width: 56px; max-height: 54px; }
  .experience-row { grid-template-columns: 1fr; gap: 17px; }
  .skills-grid { gap: 30px 18px; }
  .skill-card__header { align-items: flex-start; }

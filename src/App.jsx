@@ -362,7 +362,7 @@ function App() {
                   <Mail aria-hidden="true" />
                 </a>
               </div>
-              <span className="hero-location">Philadelphia, PA</span>
+              <span className="hero-location">Currently in Philadelphia, PA</span>
               <div className="profile-card" aria-label="Tom Lenehan profile">
                 <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                 <div>
