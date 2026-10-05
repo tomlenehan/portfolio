@@ -7,7 +7,6 @@ import {
   Code2,
   Database,
   FileText,
-  FileSearch,
   Github,
   Landmark,
   Linkedin,
@@ -15,7 +14,6 @@ import {
   Network,
   Play,
   RadioTower,
-  Rocket,
   Scale,
   HeartPulse,
   X,
@@ -24,14 +22,11 @@ import {
 const projects = [
   {
     title: "MemriPlace",
-    projectType: "Personal Project",
     kicker: "Conversational memory map",
     logo: "/assets/projects/MemriPlaceLogoLGWhite.png",
     screenshot: "/assets/projects/memriplace-tile.gif",
     screenshotAlt: "MemriPlace homepage scroll",
-    icon: Network,
     accent: "#7dd3fc",
-    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
       "A conversational AI workspace for turning personal memories into a connected memory map.",
     impact:
@@ -45,20 +40,16 @@ const projects = [
   },
   {
     title: "Brand Bounty",
-    projectType: "Personal Project",
     kicker: "Creator marketplace",
     logo: "/assets/projects/brand-bounty-mark.png",
     screenshot: "/assets/projects/brandbounty-tile.gif",
     screenshotAlt: "Brand Bounty campaign challenge demo",
-    icon: Rocket,
     accent: "#7dd3fc",
-    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
       "A creator marketplace where brands reward social content that meets campaign goals.",
     impact:
       "Brands set a platform, engagement target, and reward. Creators compete to reach the goal, while campaign data shows which content performs.",
     stack: ["React", "FastAPI", "PostgreSQL", "Docker"],
-    videoId: "nS5-l1Nb6KE",
     action: {
       type: "external",
       href: "https://brandbounty.biz/",
@@ -67,14 +58,11 @@ const projects = [
   },
   {
     title: "Question Politics",
-    projectType: "Nonprofit · Founder",
     kicker: "Civic tech nonprofit",
     logo: "/assets/projects/question-politics-logo.png",
     screenshot: "/assets/projects/questionpolitics-tile.gif",
     screenshotAlt: "Question Politics homepage scroll",
-    icon: Landmark,
     accent: "#7dd3fc",
-    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
       "A civic platform that makes congressional bills easier to understand and helps constituents engage with representatives.",
     impact:
@@ -88,14 +76,11 @@ const projects = [
   },
   {
     title: "LawCrawl",
-    projectType: "Founder · 2022–2024",
     kicker: "AI contract review",
     logo: "/assets/projects/lawcrawl-mark.png",
     screenshot: "/assets/projects/lawcrawl-tile.gif",
     screenshotAlt: "LawCrawl contract review demo",
-    icon: FileSearch,
     accent: "#7dd3fc",
-    accentSoft: "rgba(125, 211, 252, 0.16)",
     summary:
       "An AI-powered contract analysis tool.",
     impact:
@@ -127,6 +112,7 @@ const earlierExperience = [
   { company: "Norima Consulting", role: "Engineer", dates: "2012–2014", copy: "Helped build an Electronic Medical Record platform managing data for more than 95,000 patients in a HIPAA-regulated environment." },
   { company: "AppNexus", role: "Auditor, Creative Inventory", dates: "2011–2012", copy: "Worked on quality assurance for a large-scale digital advertising marketplace, reviewing creative assets and maintaining inventory quality." },
 ];
+const allExperience = [...experience, ...earlierExperience];
 const navItems = [["Projects", "#projects"], ["Experience", "#experience"], ["Skills", "#skills"]];
 
 const fadeUp = {
@@ -147,7 +133,7 @@ function SectionHeading({ eyebrow, title, copy }) {
       viewport={{ once: true, margin: "-80px" }}
       variants={fadeUp}
     >
-      <span className="eyebrow">{eyebrow}</span>
+      {eyebrow ? <span className="eyebrow">{eyebrow}</span> : null}
       <h2>{title}</h2>
       {copy ? <p>{copy}</p> : null}
     </motion.div>
@@ -155,7 +141,6 @@ function SectionHeading({ eyebrow, title, copy }) {
 }
 
 function ProjectCard({ project, index, onOpenProject }) {
-  const Icon = project.icon;
   const isExternal = project.action.type === "external";
   const Action = isExternal ? "a" : "button";
   const actionProps = isExternal
@@ -172,10 +157,7 @@ function ProjectCard({ project, index, onOpenProject }) {
   return (
     <motion.article
       className="project-card"
-      style={{
-        "--accent": project.accent,
-        "--accent-soft": project.accentSoft,
-      }}
+      style={{ "--accent": project.accent }}
       aria-label={project.title}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -191,23 +173,22 @@ function ProjectCard({ project, index, onOpenProject }) {
       <div className="project-card__media">
         <img src={project.screenshot} alt={project.screenshotAlt} loading="lazy" decoding="async" />
       </div>
-      <div className="project-card__topline">
-        <div className="project-card__labels">
-          <span className="project-type">{project.projectType}</span>
-          <span>{project.kicker}</span>
-        </div>
-        <Icon aria-hidden="true" />
-      </div>
       <div className="project-card__brand">
         <div className="project-card__logo">
           <img src={project.logo} alt={`${project.title} logo`} />
         </div>
         <div>
-          <h3>{project.title}</h3>
+          <div className="project-card__title-line">
+            <h3>{project.title}</h3>
+            <span>{project.kicker}</span>
+          </div>
           <p>{project.summary}</p>
         </div>
       </div>
-      <p className="project-card__impact">{project.impact}</p>
+      <details className="project-card__details">
+        <summary aria-label={`More about ${project.title}`}>More about this project</summary>
+        <p>{project.impact}</p>
+      </details>
       <div className="tech-list" aria-label={`${project.title} stack`}>
         {project.stack.map((item) => (
           <span key={item}>{item}</span>
@@ -222,55 +203,45 @@ function ProjectCard({ project, index, onOpenProject }) {
           {project.action.label}
           {isExternal ? <ArrowUpRight aria-hidden="true" /> : <Play aria-hidden="true" />}
         </Action>
-        {/*{isExternal && project.videoId ? (*/}
-        {/*  <button*/}
-        {/*    className="project-card__action project-card__action--demo"*/}
-        {/*    type="button"*/}
-        {/*    onClick={() => onOpenProject(project)}*/}
-        {/*    aria-label={`Watch demo: ${project.title}`}*/}
-        {/*  >*/}
-        {/*    Watch demo*/}
-        {/*    <Play aria-hidden="true" />*/}
-        {/*  </button>*/}
-        {/*) : null}*/}
       </div>
     </motion.article>
   );
 }
 
-function ProjectIndex({ onOpenProject }) {
+function ExperienceRow({ item, reducedMotion }) {
   return (
-    <div className="work-index">
-      <div className="work-index__intro">
-        <span className="eyebrow">From concept to production</span>
-        <h2>Selected work.</h2>
-        <p>Independent products built from concept to working software.</p>
+    <motion.article
+      className="experience-row"
+      initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+    >
+      <span className="experience-row__node" aria-hidden="true" />
+      <div className="experience-row__meta">
+        <span className="experience-date">{item.dates}</span>
+        <h3>{item.company}</h3>
+        <span className="experience-role">{item.role}</span>
       </div>
-      {projects.map((project, index) => (
-        <button className="work-index__project" key={project.title} onClick={() => onOpenProject(project)} aria-label={`${project.action.label}: ${project.title}`}>
-          <span className="work-index__number">0{index + 1}</span>
-          <img src={project.logo} alt="" />
-          <span><strong>{project.title}</strong><small>{project.kicker}</small></span>
-          {project.action.type === "video" ? <Play aria-hidden="true" /> : <ArrowUpRight aria-hidden="true" />}
-        </button>
-      ))}
-      <a className="work-index__current" href="#experience"><span className="pulse-dot" /> Currently leading development at MyGovWatch <ArrowUpRight aria-hidden="true" /></a>
-    </div>
+      <p>{item.copy}</p>
+    </motion.article>
   );
-}
-
-function ExperienceRow({ item }) {
-  return <article className="experience-row">
-    <div><span className="experience-date">{item.dates}</span><h3>{item.company}</h3><span className="experience-role">{item.role}</span></div>
-    <p>{item.copy}</p>
-  </article>;
 }
 
 function App() {
   const reducedMotion = useReducedMotion();
   const [videoProject, setVideoProject] = useState(null);
   const videoDialogRef = useRef(null);
+  const experienceRef = useRef(null);
   const { scrollYProgress } = useScroll();
+  const { scrollYProgress: experienceScrollProgress } = useScroll({
+    target: experienceRef,
+    offset: ["start 75%", "end 35%"],
+  });
+  const experienceLineProgress = useSpring(experienceScrollProgress, {
+    stiffness: 90,
+    damping: 24,
+  });
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 90,
     damping: 24,
@@ -345,73 +316,40 @@ function App() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             >
-              <span className="status-pill">
-                <span className="pulse-dot" />
-                Senior Full Stack Engineer - AI & Distributed Systems
-              </span>
-              <h1>Tom Lenehan</h1>
-              <p className="hero-tagline">14+ years of building creative solutions to complex problems.</p>
-              {/*<p className="hero-description">14+ years of building.</p>*/}
-              <div className="hero-actions">
-                <a className="button button-primary" href="#projects">
-                  See projects
-                  <ArrowUpRight aria-hidden="true" />
-                </a>
-                <a className="button button-secondary" href="mailto:Lenehan3@gmail.com">
-                  Contact
-                  <Mail aria-hidden="true" />
-                </a>
+              <div className="hero-intro">
+                <span className="status-pill">
+                  <span className="pulse-dot" />
+                  Senior Full Stack Engineer - AI & Distributed Systems
+                </span>
+                <h1>Tom Lenehan</h1>
               </div>
-              <span className="hero-location">Currently in Philadelphia, PA</span>
-              <div className="profile-card" aria-label="Tom Lenehan profile">
-                <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
-                <div>
+              <div className="hero-details">
+                <p className="hero-tagline">Building creative solutions to complex problems.</p>
+                <div className="profile-card" aria-label="Tom Lenehan profile">
+                  <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
                   <div className="profile-card__links" aria-label="Tom Lenehan links">
-                    <a
-                      href="/assets/Tom_Lenehan_Resume.pdf"
-                      download
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <FileText aria-hidden="true" />
-                      Resume
+                    <a href="mailto:Lenehan3@gmail.com"><Mail aria-hidden="true" /> Contact</a>
+                    <a href="/assets/Tom_Lenehan_Resume.pdf" download target="_blank" rel="noreferrer">
+                      <FileText aria-hidden="true" /> Resume
                     </a>
-                    <a
-                      href="https://www.linkedin.com/in/tom-lenehan/"
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      <Linkedin aria-hidden="true" />
-                      LinkedIn
+                    <a href="https://www.linkedin.com/in/tom-lenehan/" target="_blank" rel="noreferrer">
+                      <Linkedin aria-hidden="true" /> LinkedIn
                     </a>
                     <a href="https://github.com/tomlenehan" target="_blank" rel="noreferrer">
-                      <Github aria-hidden="true" />
-                      GitHub
+                      <Github aria-hidden="true" /> GitHub
                     </a>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div
-              className="hero-visual"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <ProjectIndex
-                onOpenProject={handleOpenProject}
-              />
-            </motion.div>
           </div>
         </section>
 
         <section className="section project-section" id="projects">
-          <SectionHeading
-            eyebrow="Selected projects"
-            title="Selected independent projects."
-            copy="Independent products I’ve taken from an idea to working software."
-          />
+          <div className="project-section__heading">
+            <h2>selected projects:</h2>
+          </div>
           <div className="project-grid">
             {projects.map((project, index) => (
               <ProjectCard
@@ -426,12 +364,18 @@ function App() {
 
         <section className="section experience-section" id="experience">
           <SectionHeading
-            eyebrow="Experience"
-            title="14+ years building and shipping."
-            copy="From real-time advertising systems to AI products and regulated software."
+            title="Experience"
           />
-          <div className="experience-list">{experience.map(item => <ExperienceRow key={item.company} item={item} />)}</div>
-          <details className="earlier-experience"><summary>Earlier experience · 2011–2015</summary>{earlierExperience.map(item => <ExperienceRow key={item.company} item={item} />)}</details>
+          <div className="experience-timeline" ref={experienceRef}>
+            <motion.div
+              className="experience-timeline__progress"
+              aria-hidden="true"
+              style={{ scaleY: reducedMotion ? 1 : experienceLineProgress }}
+            />
+            {allExperience.map(item => (
+              <ExperienceRow key={item.company} item={item} reducedMotion={reducedMotion} />
+            ))}
+          </div>
           <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
         </section>
 
@@ -457,9 +401,7 @@ function App() {
 
         <section className="section skills-section" id="skills">
           <SectionHeading
-            eyebrow="Skills"
-            title="Tools & Skills"
-            copy="A practical toolkit for building, integrating, and shipping software."
+            title="Skills"
           />
           <div className="skills-grid">
             {skillGroups.map((group, index) => {
