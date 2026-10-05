@@ -448,9 +448,9 @@ function App() {
             <div className="systems-band">
               <div className="systems-copy">
                 {/*<span className="eyebrow">Across domains</span>*/}
-                <h2>Same focus across different domains.</h2>
+                <h2>The same focus across multiple domains.</h2>
                 <p>
-                  Whether it's processing high-volume ad data, navigating large collections of legal and civic documents or handling sensitive medical information securely. The technical challenges differ, but each calls for the same care and attention to detail.
+                  Processing high-volume ad data, navigating large collections of legal and civic documents, and handling sensitive medical information securely all pose different technical challenges. Each calls for the same care and attention to detail.
                 </p>
               </div>
               <div className="system-tiles" aria-label="Operating strengths">
