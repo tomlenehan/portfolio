@@ -208,22 +208,37 @@ function ProjectCard({ project, index, onOpenProject }) {
   );
 }
 
-function ExperienceRow({ item, reducedMotion }) {
+function ExperienceRow({ item, reducedMotion, isFocused }) {
+  const rowRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: rowRef,
+    offset: ["start end", "end start"],
+  });
+  const metaScale = useSpring(useTransform(scrollYProgress, [0, 0.5, 1], [0.96, 1.07, 0.96]), {
+    stiffness: 180,
+    damping: 30,
+  });
+  const copyScale = useSpring(useTransform(scrollYProgress, [0, 0.5, 1], [0.975, 1.04, 0.975]), {
+    stiffness: 180,
+    damping: 30,
+  });
+
   return (
     <motion.article
-      className="experience-row"
+      ref={rowRef}
+      className={`experience-row${isFocused ? " experience-row--focused" : ""}`}
       initial={reducedMotion ? false : { opacity: 0, y: 18 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.35 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
     >
       <span className="experience-row__node" aria-hidden="true" />
-      <div className="experience-row__meta">
+      <motion.div className="experience-row__meta" style={reducedMotion ? undefined : { scale: metaScale }}>
         <span className="experience-date">{item.dates}</span>
         <h3>{item.company}</h3>
         <span className="experience-role">{item.role}</span>
-      </div>
-      <p>{item.copy}</p>
+      </motion.div>
+      <motion.p className="experience-row__copy" style={reducedMotion ? undefined : { scale: copyScale }}>{item.copy}</motion.p>
     </motion.article>
   );
 }
@@ -231,6 +246,7 @@ function ExperienceRow({ item, reducedMotion }) {
 function App() {
   const reducedMotion = useReducedMotion();
   const [videoProject, setVideoProject] = useState(null);
+  const [focusedExperience, setFocusedExperience] = useState(null);
   const videoDialogRef = useRef(null);
   const experienceRef = useRef(null);
   const { scrollYProgress } = useScroll();
@@ -249,6 +265,54 @@ function App() {
   });
   const heroY = useTransform(smoothProgress, [0, 0.28], [0, -90]);
   const heroOpacity = useTransform(smoothProgress, [0, 0.22], [1, 0.65]);
+
+  useEffect(() => {
+    const timeline = experienceRef.current;
+    if (!timeline) return undefined;
+
+    const rows = Array.from(timeline.querySelectorAll(".experience-row"));
+    let frame = 0;
+
+    const updateFocusedRow = () => {
+      frame = 0;
+      const timelineBounds = timeline.getBoundingClientRect();
+      if (timelineBounds.bottom < 0 || timelineBounds.top > window.innerHeight) {
+        setFocusedExperience(null);
+        return;
+      }
+
+      const focusLine = window.innerHeight * 0.5;
+      let closestIndex = null;
+      let closestDistance = Infinity;
+
+      rows.forEach((row, index) => {
+        const bounds = row.getBoundingClientRect();
+        if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
+
+        const distance = Math.abs(bounds.top + bounds.height / 2 - focusLine);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setFocusedExperience(closestIndex);
+    };
+
+    const scheduleUpdate = () => {
+      if (!frame) frame = window.requestAnimationFrame(updateFocusedRow);
+    };
+
+    scheduleUpdate();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, []);
 
   const handleOpenProject = (project) => {
     if (project.action.type === "video") {
@@ -319,7 +383,7 @@ function App() {
               <div className="hero-intro">
                 <span className="status-pill">
                   <span className="pulse-dot" />
-                  Senior Full Stack Engineer - AI & Distributed Systems
+                  Full Stack Engineer - AI & Distributed Systems
                 </span>
                 <h1>Tom Lenehan</h1>
               </div>
@@ -348,7 +412,7 @@ function App() {
 
         <section className="section project-section" id="projects">
           <div className="project-section__heading">
-            <h2>selected projects:</h2>
+            <h3>Selected Projects:</h3>
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
@@ -372,8 +436,8 @@ function App() {
               aria-hidden="true"
               style={{ scaleY: reducedMotion ? 1 : experienceLineProgress }}
             />
-            {allExperience.map(item => (
-              <ExperienceRow key={item.company} item={item} reducedMotion={reducedMotion} />
+            {allExperience.map((item, index) => (
+              <ExperienceRow key={item.company} item={item} reducedMotion={reducedMotion} isFocused={focusedExperience === index} />
             ))}
           </div>
           <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
@@ -383,10 +447,10 @@ function App() {
           <Parallax speed={-8} disabled={reducedMotion}>
             <div className="systems-band">
               <div className="systems-copy">
-                <span className="eyebrow">Systems people depend on</span>
-                <h2>Across complex domains</h2>
+                {/*<span className="eyebrow">Across domains</span>*/}
+                <h2>Same focus across different domains.</h2>
                 <p>
-                  Building systems where accuracy, scale and trust really matter.
+                  Whether it's processing high-volume ad data, navigating large collections of legal and civic documents or handling sensitive medical information securely. The technical challenges differ, but each calls for the same care and attention to detail.
                 </p>
               </div>
               <div className="system-tiles" aria-label="Operating strengths">
