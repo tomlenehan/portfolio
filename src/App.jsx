@@ -31,7 +31,7 @@ const projects = [
       "A conversational AI workspace for turning personal memories into a connected memory map.",
     impact:
       "Users talk through their memories while PGVector links people, moments, and themes into a map that helps bring a cohesive story into view.",
-    stack: ["Python", "FastAPI", "OpenAI", "React", "TanStack", "Postgres / PGVector"],
+    stack: ["Python", "FastAPI", "Typescript", "React", "TanStack", "OpenAI", "Langchain", "Jev", "Postgres / PGVector"],
     action: {
       type: "external",
       href: "https://memriplace.com/",
@@ -49,7 +49,7 @@ const projects = [
       "A creator marketplace where brands reward social content that meets campaign goals.",
     impact:
       "Brands set a platform, engagement target, and reward. Creators compete to reach the goal, while campaign data shows which content performs.",
-    stack: ["React", "FastAPI", "PostgreSQL", "Docker"],
+    stack: ["Python", "FastAPI", "Javascript", "React", "PostgreSQL"],
     action: {
       type: "external",
       href: "https://brandbounty.biz/",
@@ -67,7 +67,7 @@ const projects = [
       "A civic platform that makes congressional bills easier to understand and helps constituents engage with representatives.",
     impact:
       "I founded the nonprofit and built AI tools that translate legislation into plain English and make constituent outreach easier.",
-    stack: ["Django", "React", "PostgreSQL", "OpenAI", "Twilio"],
+    stack: ["Python", "Django", "Javascript", "React", "PostgreSQL", "OpenAI", "Langchain", "Pinecone"],
     action: {
       type: "external",
       href: "https://questionpolitics.org/",
@@ -85,7 +85,7 @@ const projects = [
       "An AI-powered contract analysis tool.",
     impact:
       "Built with agentic workflows and fine-tuned models to flag unusual terms and answer questions against source documents with page-level references.",
-    stack: ["Python", "React", "LangGraph", "OpenAI", "Pinecone"],
+    stack: ["Python", "FastAPI", "Javascript", "React", "OpenAI", "LangGraph", "Pinecone"],
     videoId: "NZmiZ2CM-18",
     action: {
       type: "video",
@@ -95,10 +95,10 @@ const projects = [
 ];
 
 const skillGroups = [
-  { title: "Frontend", icon: Code2, items: ["JavaScript", "TypeScript", "React", "Angular", "Tailwind"] },
-  { title: "Backend", icon: Database, items: ["Python", "Django", "FastAPI", "PostgreSQL", "MySQL", "C#/.NET"] },
+    { title: "Backend", icon: Database, items: ["Python", "Django", "FastAPI", "PostgreSQL", "MySQL", "C#/.NET", "PHP"] },
+  { title: "Frontend", icon: Code2, items: ["JavaScript/TypeScript", "React", "Angular", "Tailwind"] },
   { title: "AI", icon: Bot, items: ["OpenAI/Codex", "LangChain/LangGraph", "LlamaIndex", "Hugging Face", "Pinecone", "Chroma"] },
-  { title: "Infra", icon: Network, items: ["AWS: EC2, RDS, Lambda, Kinesis, Redshift, SageMaker", "Docker", "Render", "GitHub"] },
+  { title: "Infra", icon: Network, items: ["AWS", "Docker", "Render", "GitHub"] },
 ];
 
 const experience = [
