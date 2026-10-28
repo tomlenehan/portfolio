@@ -412,7 +412,7 @@ function App() {
 
         <section className="section project-section" id="projects">
           <div className="project-section__heading">
-            <h3>Selected Projects:</h3>
+            <h3>Selected Personal Projects:</h3>
           </div>
           <div className="project-grid">
             {projects.map((project, index) => (
