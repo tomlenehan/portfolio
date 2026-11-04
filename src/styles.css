@@ -1,32 +1,32 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap');
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   font-family: 'DM Sans', ui-sans-serif, system-ui, sans-serif;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  --bg: #111820;
-  --bg-2: #1b2630;
-  --text: #f1f5f9;
-  --muted: #a7b0be;
-  --quiet: #96a6b8;
-  --line: #354455;
-  --gold: #7dd3fc;
-  --mint: #7dd3fc;
+  --bg: #f1f3f5;
+  --bg-2: #ffffff;
+  --text: #171b20;
+  --muted: #4e5965;
+  --quiet: #687583;
+  --line: #d6dce2;
+  --gold: #315f8a;
+  --mint: #315f8a;
   --max: 1180px;
 }
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--bg); scroll-padding-top: 105px; }
 body { margin: 0; min-width: 320px; background: var(--bg); color: var(--text); }
-::selection { background: #7dd3fc; color: #0e1117; }
+::selection { background: #c8d8e7; color: #171b20; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 5px; }
 img { display: block; max-width: 100%; }
 h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
-.site-shell { overflow: clip; }
+.site-shell { overflow: clip; background: var(--bg); color: var(--text); }
 .skip-link { position: fixed; top: -100px; left: 20px; z-index: 300; background: var(--gold); color: var(--bg); padding: 14px; }
 .skip-link:focus { top: 15px; }
 .scroll-progress { position: fixed; inset: 0 0 auto; z-index: 100; height: 2px; transform-origin: 0 50%; background: var(--gold); }
@@ -271,3 +271,26 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
  .experience-row--focused .experience-row__node::after { animation: none; opacity: 0; }
  .project-card:hover .project-card__media img, .project-card:focus-within .project-card__media img { transform: none; }
 }
+
+/* Selected cool monochrome direction refinements */
+.hero-bg, .scroll-progress { display: none; }
+.site-nav { background: var(--bg); border-color: transparent; box-shadow: none; backdrop-filter: none; }
+.project-card, .skill-card, .systems-band, .profile-card { background: transparent; border: 1px solid var(--line); box-shadow: none; border-radius: 6px; }
+.systems-band { background: #e8edf1; }
+.project-card__media { border: 0; border-radius: 3px; }
+.status-pill, .eyebrow, .experience-role, .project-card__title-line span { color: var(--gold); }
+.project-card__details summary::after { color: var(--gold); }
+.experience-row--focused p { color: #202a34; }
+.site-shell .project-card__logo { display: grid; place-items: center; width: 66px; height: 66px; padding: 8px; border-radius: 0; background: transparent; }
+.site-shell .project-card__logo img { width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0); }
+.site-shell .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.site-shell .skill-card { min-width: 0; overflow: visible; padding: 0; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
+.site-shell .skill-card .tech-list { display: flex; flex-wrap: wrap; min-width: 0; gap: 8px 12px; }
+.site-shell .skill-card .tech-list span { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+.site-shell .experience-row__meta, .site-shell .experience-row__copy { transition: color .24s ease, font-size .24s ease, font-weight .24s ease; }
+.site-shell .experience-row--focused .experience-row__meta h3 { font-size: 1.45rem; font-weight: 700; }
+.site-shell .experience-row--focused .experience-row__copy { color: #202a34; font-size: 1.04rem; font-weight: 600; }
+.site-shell .experience-row--focused .experience-date, .site-shell .experience-row--focused .experience-role { font-weight: 600; }
+@media (max-width: 1050px) { .site-shell .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 520px) { .site-shell .skills-grid { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { .site-shell .experience-row__meta, .site-shell .experience-row__copy { transition: none; } }
