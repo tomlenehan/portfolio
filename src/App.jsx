@@ -350,213 +350,213 @@ function App() {
   return (
     <MotionConfig reducedMotion="user">
     <div className="site-shell">
-      <a className="skip-link" href="#main-content">Skip to content</a>
-      <motion.div className="scroll-progress" style={{ scaleX: smoothProgress }} />
+          <a className="skip-link" href="#main-content">Skip to content</a>
+          <motion.div className="scroll-progress" style={{ scaleX: smoothProgress }} />
 
-      <header className="site-nav">
-        <a className="brand-mark" href="#top" aria-label="Tom Lenehan home">
-          <span>TL</span>
-          <strong>Tom Lenehan</strong>
-        </a>
-        <nav aria-label="Main navigation">
-          {navItems.map(([label, href]) => (
-            <a href={href} key={href}>
-              {label}
+          <header className="site-nav">
+            <a className="brand-mark" href="#top" aria-label="Tom Lenehan home">
+              <span>TL</span>
+              <strong>Tom Lenehan</strong>
             </a>
-          ))}
-        </nav>
-      </header>
+            <nav aria-label="Main navigation">
+              {navItems.map(([label, href]) => (
+                <a href={href} key={href}>
+                  {label}
+                </a>
+              ))}
+            </nav>
+          </header>
 
-      <main id="main-content">
-        <section className="hero-section" id="top">
-          <motion.div className="hero-bg" style={reducedMotion ? undefined : { y: heroY, opacity: heroOpacity }} aria-hidden="true">
-            <div className="hero-grid" />
-          </motion.div>
+          <main id="main-content">
+            <section className="hero-section" id="top">
+              <motion.div className="hero-bg" style={reducedMotion ? undefined : { y: heroY, opacity: heroOpacity }} aria-hidden="true">
+                <div className="hero-grid" />
+              </motion.div>
 
-          <div className="hero-content">
-            <motion.div
-              className="hero-copy"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <div className="hero-intro">
-                <span className="status-pill">
-                  <span className="pulse-dot" />
-                  Full Stack Engineer - AI & Distributed Systems
-                </span>
-                <h1>Tom Lenehan</h1>
+              <div className="hero-content">
+                <motion.div
+                  className="hero-copy"
+                  initial={{ opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                >
+                  <div className="hero-intro">
+                    <span className="status-pill">
+                      <span className="pulse-dot" />
+                      Full Stack Engineer - AI & Distributed Systems
+                    </span>
+                    <h1>Tom Lenehan</h1>
+                  </div>
+                  <div className="hero-details">
+                    <p className="hero-tagline">Building creative solutions to complex problems.</p>
+                    <div className="profile-card" aria-label="Tom Lenehan profile">
+                      <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
+                      <div className="profile-card__links" aria-label="Tom Lenehan links">
+                        <a href="mailto:Lenehan3@gmail.com"><Mail aria-hidden="true" /> Contact</a>
+                        <a href="/assets/Tom_Lenehan_Resume.pdf" download target="_blank" rel="noreferrer">
+                          <FileText aria-hidden="true" /> Resume
+                        </a>
+                        <a href="https://www.linkedin.com/in/tom-lenehan/" target="_blank" rel="noreferrer">
+                          <Linkedin aria-hidden="true" /> LinkedIn
+                        </a>
+                        <a href="https://github.com/tomlenehan" target="_blank" rel="noreferrer">
+                          <Github aria-hidden="true" /> GitHub
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+
               </div>
-              <div className="hero-details">
-                <p className="hero-tagline">Building creative solutions to complex problems.</p>
-                <div className="profile-card" aria-label="Tom Lenehan profile">
-                  <img src="/assets/profile/tom-headshot.jpg" alt="Tom Lenehan headshot" />
-                  <div className="profile-card__links" aria-label="Tom Lenehan links">
-                    <a href="mailto:Lenehan3@gmail.com"><Mail aria-hidden="true" /> Contact</a>
-                    <a href="/assets/Tom_Lenehan_Resume.pdf" download target="_blank" rel="noreferrer">
-                      <FileText aria-hidden="true" /> Resume
-                    </a>
-                    <a href="https://www.linkedin.com/in/tom-lenehan/" target="_blank" rel="noreferrer">
-                      <Linkedin aria-hidden="true" /> LinkedIn
-                    </a>
-                    <a href="https://github.com/tomlenehan" target="_blank" rel="noreferrer">
-                      <Github aria-hidden="true" /> GitHub
-                    </a>
+            </section>
+
+            <section className="section project-section" id="projects">
+              <div className="project-section__heading">
+                <h3>Selected Personal Projects:</h3>
+              </div>
+              <div className="project-grid">
+                {projects.map((project, index) => (
+                  <ProjectCard
+                    key={project.title}
+                    project={project}
+                    index={index}
+                    onOpenProject={handleOpenProject}
+                  />
+                ))}
+              </div>
+            </section>
+
+            <section className="section experience-section" id="experience">
+              <SectionHeading
+                title="Experience"
+              />
+              <div className="experience-timeline" ref={experienceRef}>
+                <motion.div
+                  className="experience-timeline__progress"
+                  aria-hidden="true"
+                  style={{ scaleY: reducedMotion ? 1 : experienceLineProgress }}
+                />
+                {allExperience.map((item, index) => (
+                  <ExperienceRow key={item.company} item={item} reducedMotion={reducedMotion} isFocused={focusedExperience === index} />
+                ))}
+              </div>
+              <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
+            </section>
+
+            <section className="section systems-section">
+              <Parallax speed={-8} disabled={reducedMotion}>
+                <div className="systems-band">
+                  <div className="systems-copy">
+                    {/*<span className="eyebrow">Across domains</span>*/}
+                    <h2>The same focus across multiple domains.</h2>
+                    <p>
+                      Processing high-volume ad data, navigating large collections of legal and civic documents, and handling sensitive medical information securely all pose different technical challenges. Each calls for the same care and attention to detail.
+                    </p>
+                  </div>
+                  <div className="system-tiles" aria-label="Operating strengths">
+                    <span><RadioTower aria-hidden="true" /> Advertising and real-time data systems</span>
+                    <span><Scale aria-hidden="true" /> AI and legal-document analysis</span>
+                    <span><Landmark aria-hidden="true" /> GovTech and civic information</span>
+                    <span><HeartPulse aria-hidden="true" /> HIPAA-regulated healthcare software</span>
                   </div>
                 </div>
-              </div>
-            </motion.div>
+              </Parallax>
+            </section>
 
-          </div>
-        </section>
-
-        <section className="section project-section" id="projects">
-          <div className="project-section__heading">
-            <h3>Selected Personal Projects:</h3>
-          </div>
-          <div className="project-grid">
-            {projects.map((project, index) => (
-              <ProjectCard
-                key={project.title}
-                project={project}
-                index={index}
-                onOpenProject={handleOpenProject}
+            <section className="section skills-section" id="skills">
+              <SectionHeading
+                title="Skills"
               />
-            ))}
-          </div>
-        </section>
-
-        <section className="section experience-section" id="experience">
-          <SectionHeading
-            title="Experience"
-          />
-          <div className="experience-timeline" ref={experienceRef}>
-            <motion.div
-              className="experience-timeline__progress"
-              aria-hidden="true"
-              style={{ scaleY: reducedMotion ? 1 : experienceLineProgress }}
-            />
-            {allExperience.map((item, index) => (
-              <ExperienceRow key={item.company} item={item} reducedMotion={reducedMotion} isFocused={focusedExperience === index} />
-            ))}
-          </div>
-          <div className="education"><span className="eyebrow">Education</span><p><strong>Lehigh University</strong> · B.S. Business Information Systems · 2007–2011</p></div>
-        </section>
-
-        <section className="section systems-section">
-          <Parallax speed={-8} disabled={reducedMotion}>
-            <div className="systems-band">
-              <div className="systems-copy">
-                {/*<span className="eyebrow">Across domains</span>*/}
-                <h2>The same focus across multiple domains.</h2>
-                <p>
-                  Processing high-volume ad data, navigating large collections of legal and civic documents, and handling sensitive medical information securely all pose different technical challenges. Each calls for the same care and attention to detail.
-                </p>
+              <div className="skills-grid">
+                {skillGroups.map((group, index) => {
+                  const Icon = group.icon;
+                  return (
+                    <motion.article
+                      className="skill-card"
+                      key={group.title}
+                      initial={{ opacity: 0, y: 26 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ duration: 0.55, delay: index * 0.06 }}
+                    >
+                      <div className="skill-card__header">
+                        <Icon aria-hidden="true" />
+                        <h3>{group.title}</h3>
+                      </div>
+                      <div className="tech-list">
+                        {group.items.map((item) => (
+                          <span key={item}>{item}</span>
+                        ))}
+                      </div>
+                    </motion.article>
+                  );
+                })}
               </div>
-              <div className="system-tiles" aria-label="Operating strengths">
-                <span><RadioTower aria-hidden="true" /> Advertising and real-time data systems</span>
-                <span><Scale aria-hidden="true" /> AI and legal-document analysis</span>
-                <span><Landmark aria-hidden="true" /> GovTech and civic information</span>
-                <span><HeartPulse aria-hidden="true" /> HIPAA-regulated healthcare software</span>
-              </div>
+            </section>
+
+            <section className="section contact-section" id="contact">
+              <span className="eyebrow">Let’s connect</span>
+              <h2>Have a problem worth solving?</h2>
+              <p>I’d love to hear about what you’re building.</p>
+              <a className="button button-primary" href="mailto:Lenehan3@gmail.com">Get in touch <ArrowUpRight aria-hidden="true" /></a>
+            </section>
+          </main>
+
+          <footer className="site-footer">
+            <span>Tom Lenehan</span>
+            <div>
+              <a href="mailto:Lenehan3@gmail.com" aria-label="Email Tom Lenehan">
+                <Mail aria-hidden="true" />
+              </a>
+              <a href="#top" aria-label="Back to top">
+                <ArrowUpRight aria-hidden="true" />
+              </a>
             </div>
-          </Parallax>
-        </section>
+          </footer>
 
-        <section className="section skills-section" id="skills">
-          <SectionHeading
-            title="Skills"
-          />
-          <div className="skills-grid">
-            {skillGroups.map((group, index) => {
-              const Icon = group.icon;
-              return (
-                <motion.article
-                  className="skill-card"
-                  key={group.title}
-                  initial={{ opacity: 0, y: 26 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  transition={{ duration: 0.55, delay: index * 0.06 }}
-                >
-                  <div className="skill-card__header">
-                    <Icon aria-hidden="true" />
-                    <h3>{group.title}</h3>
-                  </div>
-                  <div className="tech-list">
-                    {group.items.map((item) => (
-                      <span key={item}>{item}</span>
-                    ))}
-                  </div>
-                </motion.article>
-              );
-            })}
-          </div>
-        </section>
-
-        <section className="section contact-section" id="contact">
-          <span className="eyebrow">Let’s connect</span>
-          <h2>Have a problem worth solving?</h2>
-          <p>I’d love to hear about what you’re building.</p>
-          <a className="button button-primary" href="mailto:Lenehan3@gmail.com">Get in touch <ArrowUpRight aria-hidden="true" /></a>
-        </section>
-      </main>
-
-      <footer className="site-footer">
-        <span>Tom Lenehan</span>
-        <div>
-          <a href="mailto:Lenehan3@gmail.com" aria-label="Email Tom Lenehan">
-            <Mail aria-hidden="true" />
-          </a>
-          <a href="#top" aria-label="Back to top">
-            <ArrowUpRight aria-hidden="true" />
-          </a>
-        </div>
-      </footer>
-
-      {videoProject ? (
-        <div
-          className="video-modal"
-          role="presentation"
-          onMouseDown={(event) => {
-            if (event.target === event.currentTarget) {
-              setVideoProject(null);
-            }
-          }}
-        >
-          <section
-            className="video-modal__dialog"
-            ref={videoDialogRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="project-video-title"
-            tabIndex={-1}
-          >
-            <div className="video-modal__header">
-              <div>
-                <span>{videoProject.title}</span>
-                {/*<h2 id="project-video-title">Product demo</h2>*/}
-              </div>
-              <button
-                className="video-modal__close"
-                type="button"
-                onClick={() => setVideoProject(null)}
-                aria-label={`Close ${videoProject.title} demo`}
+          {videoProject ? (
+            <div
+              className="video-modal"
+              role="presentation"
+              onMouseDown={(event) => {
+                if (event.target === event.currentTarget) {
+                  setVideoProject(null);
+                }
+              }}
+            >
+              <section
+                className="video-modal__dialog"
+                ref={videoDialogRef}
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="project-video-title"
+                tabIndex={-1}
               >
-                <X aria-hidden="true" />
-              </button>
+                <div className="video-modal__header">
+                  <div>
+                    <span>{videoProject.title}</span>
+                    {/*<h2 id="project-video-title">Product demo</h2>*/}
+                  </div>
+                  <button
+                    className="video-modal__close"
+                    type="button"
+                    onClick={() => setVideoProject(null)}
+                    aria-label={`Close ${videoProject.title} demo`}
+                  >
+                    <X aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="video-modal__frame">
+                  <iframe
+                    src={`https://www.youtube-nocookie.com/embed/${videoProject.videoId}?autoplay=1&rel=0&modestbranding=1`}
+                    title={`${videoProject.title} product demo`}
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                  />
+                </div>
+              </section>
             </div>
-            <div className="video-modal__frame">
-              <iframe
-                src={`https://www.youtube-nocookie.com/embed/${videoProject.videoId}?autoplay=1&rel=0&modestbranding=1`}
-                title={`${videoProject.title} product demo`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              />
-            </div>
-          </section>
-        </div>
-      ) : null}
+          ) : null}
     </div>
     </MotionConfig>
   );

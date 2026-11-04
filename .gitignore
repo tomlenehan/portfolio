@@ -33,3 +33,6 @@ yarn-error.log*
 /.wrangler/
 /outputs/
 /work/
+
+# local agent memory, shared across harnesses
+/Agent/
