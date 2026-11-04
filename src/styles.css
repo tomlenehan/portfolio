@@ -44,7 +44,7 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .hero-copy { display: grid; grid-template-columns: .9fr 1.1fr; align-items: end; gap: 48px; }
 .eyebrow, .status-pill { display: inline-flex; align-items: center; gap: 9px; color: var(--gold); font-size: .7rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em; }
 .pulse-dot { width: 6px; height: 6px; flex-shrink: 0; border-radius: 50%; background: var(--gold); }
-.hero-copy h1 { margin: 14px 0 0; font-size: clamp(3rem,4.6vw,4.3rem); font-weight: 600; line-height: 1.04; letter-spacing: -.065em; }
+.hero-copy h1 { margin: 14px 0 15px; font-size: clamp(3rem,4.6vw,4.3rem); font-weight: 600; line-height: 1.04; letter-spacing: -.065em; }
 .hero-copy .hero-tagline { margin: 0; font-size: clamp(1.25rem,2vw,1.65rem); line-height: 1.4; letter-spacing: -.025em; max-width: 820px; }
 .button { display: inline-flex; justify-content: center; align-items: center; gap: 20px; min-height: 46px; padding: 12px 20px; border-radius: 7px; font-size: .87rem; font-weight: 600; border: 1px solid var(--line); transition: background .2s, transform .2s; }
 .button svg { width: 17px; height: 17px; }
@@ -274,7 +274,7 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 
 /* Selected cool monochrome direction refinements */
 .hero-bg, .scroll-progress { display: none; }
-.site-nav { background: var(--bg); border-color: transparent; box-shadow: none; backdrop-filter: none; }
+.site-nav { background: var(--bg); border-color: transparent; box-shadow: 0 4px 14px rgba(23, 27, 32, .08); backdrop-filter: none; }
 .project-card, .skill-card, .systems-band, .profile-card { background: transparent; border: 1px solid var(--line); box-shadow: none; border-radius: 6px; }
 .systems-band { background: #e8edf1; }
 .project-card__media { border: 0; border-radius: 3px; }
