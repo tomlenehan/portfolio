@@ -102,15 +102,33 @@ const skillGroups = [
 ];
 
 const experience = [
-  { company: "MyGovWatch.com", role: "Lead Engineer", dates: "2024–Present", copy: "Owning the platform as the sole full-time engineer, from infrastructure and reliability to product priorities and ongoing development. Building AI automation for time-consuming internal workflows, supporting high-volume government data pipelines, and coordinating third-party engineering teams." },
-  { company: "LawCrawl", role: "Founder", dates: "2022–2024", copy: "built an AI contract-analysis platform from the ground up using agentic workflows, vector RAG, evaluations, and fine-tuned models. Owned the full product lifecycle, using feedback from customers and investors to rapidly iterate on the product and its direction." },
-  { company: "Trellis", role: "Senior Engineer", dates: "2022–2023", copy: "Built a hybrid legal-document search system combining vector similarity with Elasticsearch keyword search, improving retrieval across a large repository of legal documents." },
-  { company: "Proper Media", role: "Senior Engineer", dates: "2015–2022", copy: "Co-built a real-time-bidding solution with integrations across dozens of ad exchanges. Built AWS data infrastructure for high-volume bidding data and led new monetization initiatives across major publisher properties including Salon and Snopes." },
+  { company: "MyGovWatch.com", role: "Lead - AI Engineer", dates: "2024–Present", highlights: [
+    "Building AI workflows as microservices to automate time-consuming manual data entry using RAG, OCR, vector embeddings, and structured extraction, saving the equivalent of 1+ FTE in manual data-entry work.",
+    "Supporting infrastructure and web-scraping ETL pipelines that ingest high volumes of government contract data.",
+    "Coordinating work between third-party engineering teams while maintaining ownership of the codebase and infrastructure.",
+  ] },
+  { company: "LawCrawl", role: "Founder", dates: "2022–2024", highlights: [
+    "Architected and built an AI-powered legal contract analysis platform using LLMs, RAG, agentic workflows, vector databases, model fine-tuning, and evaluations.",
+    "Led end-to-end product development, go-to-market strategy, customer acquisition, fundraising, and product iteration based on user feedback.",
+  ] },
+  { company: "Trellis", role: "Senior - AI Engineer", dates: "2022–2023", highlights: [
+    "Built a hybrid search system combining Elasticsearch keyword search, OpenAI embeddings, vector similarity search, and rank fusion to improve document retrieval and search relevance across a large repository of court filings.",
+  ] },
+  { company: "Proper Media, LLC", role: "Senior Engineer", dates: "2015–2022 · San Diego", highlights: [
+    "Led the technical migration and platform integration of Salon.com following its acquisition, helping the company achieve profitability for the first time in its history.",
+    "Built an AWS Lambda, Kinesis, Redshift, and RDS data pipeline for high-volume bidding data, and created internal dashboards and BI tools to increase data visibility.",
+  ] },
 ];
 const earlierExperience = [
-  { company: "Youtily", role: "Full-Stack Engineer", dates: "2014–2015", copy: "Built a digital marketing platform for small businesses, working closely with the founders on product strategy, new features, and third-party integrations." },
-  { company: "Norima Consulting", role: "Engineer", dates: "2012–2014", copy: "Helped build an Electronic Medical Record platform managing data for more than 95,000 patients in a HIPAA-regulated environment." },
-  { company: "AppNexus", role: "Auditor, Creative Inventory", dates: "2011–2012", copy: "Worked on quality assurance for a large-scale digital advertising marketplace, reviewing creative assets and maintaining inventory quality." },
+  { company: "Youtily", role: "Full Stack Engineer", dates: "2014–2015 · San Diego", highlights: [
+    "Built a digital marketing platform that helped small businesses improve local search visibility. Worked directly with founders on product strategy, features, and third-party integrations.",
+  ] },
+  { company: "Norima Consulting", role: "Developer", dates: "2012–2014 · San Diego", highlights: [
+    "Helped build an Electronic Medical Record system managing data for 95,000+ patients in a HIPAA-regulated environment.",
+  ] },
+  { company: "AppNexus", role: "Auditor, Creative Inventory", dates: "Oct 2011–Jul 2012 · New York, NY", highlights: [
+    "Performed quality assurance across a large inventory of internet display ads, validating creative assets and inventory quality.",
+  ] },
 ];
 const allExperience = [...experience, ...earlierExperience];
 const navItems = [["Projects", "#projects"], ["Experience", "#experience"], ["Skills", "#skills"]];
@@ -238,7 +256,9 @@ function ExperienceRow({ item, reducedMotion, isFocused }) {
         <h3>{item.company}</h3>
         <span className="experience-role">{item.role}</span>
       </motion.div>
-      <motion.p className="experience-row__copy" style={reducedMotion ? undefined : { scale: copyScale }}>{item.copy}</motion.p>
+      <motion.ul className="experience-row__copy" style={reducedMotion ? undefined : { scale: copyScale }}>
+        {item.highlights.map((highlight) => <li key={highlight}>{highlight}</li>)}
+      </motion.ul>
     </motion.article>
   );
 }

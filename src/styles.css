@@ -102,8 +102,10 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .experience-date { font-size: .75rem; color: var(--quiet); }
 .experience-row h3 { font-size: 1.25rem; font-weight: 500; margin: 8px 0 5px; }
 .experience-role { color: var(--gold); font-size: .8rem; }
-.experience-row p { margin: 0; font-size: .93rem; line-height: 1.75; color: var(--muted); transition: color .28s ease; }
-.experience-row--focused p { color: #d5dfeb; }
+.experience-row__copy { margin: 0; padding-left: 1.1em; font-size: .93rem; line-height: 1.75; color: var(--muted); transition: color .28s ease; }
+.experience-row__copy li + li { margin-top: .55em; }
+.experience-row__copy li::marker { color: var(--gold); }
+.experience-row--focused .experience-row__copy { color: #d5dfeb; }
 .education { margin-top: 24px; padding: 25px 0; border-top: 1px solid var(--line); }
 .education p { font-size: .85rem; color: var(--muted); line-height: 1.8; margin: 12px 0 0; }
 .education strong { color: var(--text); font-weight: 500; }
@@ -280,7 +282,7 @@ h1, h2, h3 { font-family: 'Manrope', ui-sans-serif, system-ui, sans-serif; }
 .project-card__media { border: 0; border-radius: 3px; }
 .status-pill, .eyebrow, .experience-role, .project-card__title-line span { color: var(--gold); }
 .project-card__details summary::after { color: var(--gold); }
-.experience-row--focused p { color: #202a34; }
+.experience-row--focused .experience-row__copy { color: #202a34; }
 .site-shell .project-card__logo { display: grid; place-items: center; width: 66px; height: 66px; padding: 8px; border-radius: 0; background: transparent; }
 .site-shell .project-card__logo img { width: 100%; max-height: 100%; object-fit: contain; filter: brightness(0); }
 .site-shell .skills-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
